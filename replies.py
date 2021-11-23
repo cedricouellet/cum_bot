@@ -1,7 +1,7 @@
 REPLIES = {
     'math': {
         'overflow': 'Jesus christ man, do you think I\'m a calculator?',
-        'keyerror': 'What the fuck is that.\nSeriously, I\'m not even joking.\n\nAre you brain dead?',
+        'invalid': 'What the fuck is that.\nSeriously, I\'m not even joking.\n\nAre you brain dead?',
         'blank': 'Don\'t waste my time asshole.\n\n Do this `!math 1+1`, dumbass nigga.'
     },
     'joke': {
@@ -20,6 +20,9 @@ REPLIES = {
         'cedric': '<@359068019286212618>',
         'eli': '<@337754436304896000>',
         'felix': '<@181490764734398464>'
+    },
+    'other': {
+        'unexpectederror': 'Can\'t do that. Something went wrong...'
     }
 }
 """

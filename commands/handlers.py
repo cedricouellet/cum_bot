@@ -29,10 +29,10 @@ def handle_math_command(command: str) -> Union[int, any]:
         return calculate_expression(command[5:])
     except OverflowError:
         return REPLIES['math']['overflow']
-    except KeyError:
-        return REPLIES['math']['keyerror']
     except SyntaxError:
         return REPLIES['math']['blank']
+    except: # noqa (all other errors should default to the same error message)
+        return REPLIES['math']['invalid']
 
 
 def handle_joke_command() -> str:

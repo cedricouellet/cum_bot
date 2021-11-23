@@ -71,4 +71,7 @@ def handle_command(command: str, sender: str) -> Union[str, None]:
         return __usage(sender)
 
     if command == 'code':
-        return __code()
+        try:
+            return __code()
+        except OSError:
+            return REPLIES['other']['unexpectederror']
