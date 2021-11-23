@@ -22,8 +22,10 @@ class DiscordBot(discord.Client):
         Constructor
         
         Parameters:
-        - `{bool} dev`: Whether or not this is being called from a development environment.
-                        If so, the bot will be quiet when logging in and out.
+
+        - `{bool} dev` - Whether or not this is being called from a development environment.
+
+        If so, the bot will be quiet when logging in and out.
         """
         super().__init__(**options)
         self.token = None
@@ -63,7 +65,7 @@ class DiscordBot(discord.Client):
 
         Parameters:
 
-        - `{str} token`: The token to use to login to Discord
+        - `{str} token` - The token to use to login to Discord
         """
         self.token = token
 
@@ -75,7 +77,7 @@ class DiscordBot(discord.Client):
 
         Parameters:
 
-        - `{bool} error`: Whether or not the bot is shutting down due to an error
+        - `{bool} error` - Whether or not the bot is shutting down due to an error
         """
         channel = self.get_channel(int(GENERAL_CHANNEL))
 
@@ -96,7 +98,7 @@ class DiscordBot(discord.Client):
 
         Parameters:
         
-        - `{discord.Member} member`: The member that joined
+        - `{discord.Member} member` - The member that joined
         """
         await member.create_dm()
         await member.dm_channel.send(f'{member.name}, you\'re my slave now.')

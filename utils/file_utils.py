@@ -49,7 +49,7 @@ def scrape_all_files(root_files: [str] = None, dirs: [str] = None) -> str:
 
     Returns:
 
-    - `{str}`: The contents of all selected files
+    - `{str}` - The contents of all selected files
     """
     file_separator = __get_file_separator()
 

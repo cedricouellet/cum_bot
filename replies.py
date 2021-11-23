@@ -6,7 +6,9 @@ REPLIES = {
     },
     'joke': {
         'httperror': 'Fuck my internet\'s down.\n\nTry again later.',
-        'answer': 'Here\'s your shitty joke, asshole:\n\n'
+        'answer': 'Here\'s your shitty joke, asshole:\n\n',
+        'invalid': 'That\'s not a valid joke category, you dumb fuck.\n\n' +
+                   'The valid categories are: *Any, Misc, Programming, Dark, Pun, Spooky, Christmas*'
     },
     'funny': {
         'oleg': 'That\'s right. I fucked oleg\'s mom',

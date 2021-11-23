@@ -7,32 +7,33 @@ from typing import Tuple
 import requests
 
 
-def fetch_random_joke() -> Tuple[str, str]:
+def fetch_random_joke(category: str = "Any") -> Tuple[str, str]:
     """
     Get a random joke.
 
+    Parameters:
+
+    - `{str?} category` - The category of the joke (optional)
+
+
     Returns:
-    - `(string, string)` - The setup and delivery of the joke
+
+    - `{str, str}` - The setup and delivery of the joke
 
     Raises:
-    - `requests.exceptions.HTTPError` - If the request fails
+
+    - `{requests.exceptions.HTTPError}` - If the request fails
+
+    - `{KeyError}` - If the category is invalid
     """
     try:
-        joke = requests.get('https://v2.jokeapi.dev/joke/Dark').json()
+        joke = requests.get(f'https://v2.jokeapi.dev/joke/{category}').json()
 
         setup = joke['setup']
         delivery = joke['delivery']
 
         return setup, delivery
-    except requests.exceptions.HTTPError:
-        # try again if the first request fails
-        try:
-            joke = requests.get('https://v2.jokeapi.dev/joke/Dark').json()
-
-            setup = joke['setup']
-            delivery = joke['delivery']
-
-            return setup, delivery
-        except requests.exceptions.HTTPError as e:
-            # if the second request fails, raise the exception
-            raise e
+    except TypeError:
+        raise KeyError()
+    except requests.exceptions.HTTPError as e:
+        raise e

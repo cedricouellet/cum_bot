@@ -27,8 +27,8 @@ def __code() -> str:
     return scrape_all_files()
 
 
-def __joke() -> str:
-    return handle_joke_command()
+def __joke(command) -> str:
+    return handle_joke_command(command)
 
 
 def __math(command) -> str:
@@ -64,8 +64,8 @@ def handle_command(command: str, sender: str) -> Union[str, None]:
     if command.startswith('math'):
         return __math(command)
 
-    if command == 'joke':
-        return __joke()
+    if command.startswith('joke'):
+        return __joke(command)
 
     if command == 'help':
         return __usage(sender)

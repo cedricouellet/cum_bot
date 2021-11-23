@@ -26,7 +26,7 @@ def handle_math_command(command: str) -> Union[int, any]:
     - `{str}` - The result of the command or a comedic error message
     """
     try:
-        return calculate_expression(command[5:])
+        return calculate_expression(command[5:].strip())
     except OverflowError:
         return REPLIES['math']['overflow']
     except SyntaxError:
@@ -35,19 +35,33 @@ def handle_math_command(command: str) -> Union[int, any]:
         return REPLIES['math']['invalid']
 
 
-def handle_joke_command() -> str:
+def handle_joke_command(command) -> str:
     """
     Handle the joke command
+
+    Parameters:
+
+    - `{str}` - The
 
     Returns:
 
     - `{str}` - The joke or a comedic error message
     """
+
+    category = command[5:].strip()
+
     try:
-        setup, delivery = fetch_random_joke()
+        if category == "":
+            content = fetch_random_joke()
+        else:
+            content = fetch_random_joke(category)
+
+        setup, delivery = content
         return REPLIES['joke']['answer'] + f'**{setup}**\n*{delivery}*'
     except HTTPError:
         return REPLIES['joke']['httperror']
+    except: # noqa (we want to handle all errors)
+        return REPLIES['joke']['invalid']
 
 
 def handle_help_command(sender: str) -> str:
