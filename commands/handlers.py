@@ -7,7 +7,7 @@ from typing import Union
 from requests.exceptions import HTTPError
 
 from utils.math import calculate_expression
-from utils.api_calls import fetch_random_joke
+from utils.api_calls import fetch_joke_by_category
 
 from replies import REPLIES
 from .constants import COMMANDS
@@ -52,12 +52,12 @@ def handle_joke_command(command) -> str:
 
     try:
         if category == "":
-            content = fetch_random_joke()
+            content = fetch_joke_by_category()
         else:
-            content = fetch_random_joke(category)
+            content = fetch_joke_by_category(category)
 
-        setup, delivery, joke_type = content
-        return REPLIES['joke']['answer'] + f'Type: {joke_type.upper()}\n\n**{setup}**\n*{delivery}*'
+        setup, delivery, category = content
+        return REPLIES['joke']['answer'] + f'Category: {category.upper()}\n\n**{setup}**\n*{delivery}*'
     except HTTPError:
         return REPLIES['joke']['httperror']
     except: # noqa (we want to handle all errors)

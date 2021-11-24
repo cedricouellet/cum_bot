@@ -10,12 +10,11 @@ def __make_joke_request(category: str) -> Tuple[str, str, str]:
     joke = requests.get(f'https://v2.jokeapi.dev/joke/{category}').json()
     setup = joke['setup']
     delivery = joke['delivery']
-    joke_type = joke['type']
 
-    return setup, delivery, joke_type
+    return setup, delivery, category
 
 
-def fetch_random_joke(category: str = "Any") -> Tuple[str, str, str]:
+def fetch_joke_by_category(category: str = "Any") -> Tuple[str, str, str]:
     """
     Get a random joke.
 
@@ -26,7 +25,7 @@ def fetch_random_joke(category: str = "Any") -> Tuple[str, str, str]:
 
     Returns:
 
-    - `{str, str, str}` - The setup, delivery and type of the joke
+    - `{str, str, str}` - The setup, delivery and category of the joke
 
     Raises:
 
