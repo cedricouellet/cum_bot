@@ -31,7 +31,11 @@ class DiscordBot(discord.Client):
         self.token = None
         self.dev = dev
 
+    # discord method
     async def on_ready(self):
+        """
+        Once the bot is online.
+        """
         channel = self.get_channel(int(GENERAL_CHANNEL))
 
         if self.dev is False:
@@ -39,7 +43,15 @@ class DiscordBot(discord.Client):
 
         print(f'{self.user.name} has connected to Discord!')
 
+    # discord method
     async def on_message(self, message: discord.Message):
+        """
+        Once a message is received on the current guild/server.
+
+        Parameters:
+
+        - `{discord.Message} message` - The message that was received.
+        """
         if message.author == self.user:
             return
 
@@ -91,6 +103,7 @@ class DiscordBot(discord.Client):
 
         await self.close()
 
+    # discord method
     @staticmethod
     async def on_member_join(member: discord.Member):
         """

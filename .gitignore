@@ -1,3 +1,13 @@
-/venv
-/__pycache__
+# __pychache__
+*/__pycache__
+/__pychache
+
+# .env
+*/.env
 .env
+
+# venv
+*/venv
+/venv
+
+
