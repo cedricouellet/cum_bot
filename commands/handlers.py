@@ -56,8 +56,8 @@ def handle_joke_command(command) -> str:
         else:
             content = fetch_random_joke(category)
 
-        setup, delivery = content
-        return REPLIES['joke']['answer'] + f'**{setup}**\n*{delivery}*'
+        setup, delivery, type = content
+        return REPLIES['joke']['answer'] + f'*Type:*{type}\n\n**{setup}**\n*{delivery}*'
     except HTTPError:
         return REPLIES['joke']['httperror']
     except: # noqa (we want to handle all errors)
