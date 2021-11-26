@@ -93,9 +93,9 @@ async def __send_long_message(ctx: Context, message: str):
     i = len(message)
     while i > 0:
         if i > limit:
-            await ctx.send(f'```message[:limit]```')
+            await ctx.send(f'```{message[:limit]}```')
             message = message[limit:]
             i -= limit
         else:
-            await ctx.channel.send(f'```message[:i]```')
+            await ctx.channel.send(f'```{message[:i]}```')
             i = 0
