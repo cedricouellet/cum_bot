@@ -92,14 +92,6 @@ class DiscordBot(Bot):
     # @staticmethod
     # async def __send_message(in_message: discord.Message, out_message: str) -> None:
     #     if len(out_message) > 2000:
-    #         i = len(out_message)
-    #         while i > 0:
-    #             if i > 2000:
-    #                 await in_message.channel.send(out_message[:2000])
-    #                 out_message = out_message[2000:]
-    #                 i -= 2000
-    #             else:
-    #                 await in_message.channel.send(out_message[:i])
-    #                 i = 0
+    #
     #     else:
     #         await in_message.channel.send(out_message)

@@ -73,7 +73,7 @@ def __add_fuckyou_command(bot: Bot):
 def __add_code_command(bot: Bot):
     @bot.command(name="code", brief=strings["briefs"]["code"])
     async def code(ctx: Context):
-        await ctx.send(handle_code_command())
+        await __send_long_message(ctx, handle_code_command())
 
 
 def __add_joke_command(bot: Bot):
@@ -86,3 +86,16 @@ def __add_math_command(bot: Bot):
     @bot.command(name="math", brief=strings["briefs"]["math"])
     async def math(ctx: Context, expression: str):
         await ctx.send(handle_math_command(expression))
+
+
+async def __send_long_message(ctx: Context, message: str):
+    limit = 4000
+    i = len(message)
+    while i > 0:
+        if i > limit:
+            await ctx.send(message[:limit])
+            message = message[limit:]
+            i -= limit
+        else:
+            await ctx.channel.send(message[:i])
+            i = 0
