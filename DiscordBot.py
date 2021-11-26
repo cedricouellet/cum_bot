@@ -1,5 +1,6 @@
 import discord
-
+from discord.ext import commands
+from discord.ext.commands import command
 from commands.commands import handle_command
 
 
@@ -13,11 +14,11 @@ USERS = {
 }
 
 
-class DiscordBot(discord.Client):
+class DiscordBot(commands.Bot):
     """
     CumBot 0.1.0
     """
-    def __init__(self, dev: bool, **options):
+    def __init__(self, dev: bool):
         """
         Constructor
         
@@ -27,9 +28,13 @@ class DiscordBot(discord.Client):
 
         If so, the bot will be quiet when logging in and out.
         """
-        super().__init__(**options)
+        super().__init__(command_prefix='!')
         self.token = None
         self.dev = dev
+
+        @self.command(name="help")
+        async def help(ctx):
+            print('help')
 
     # discord method
     async def on_ready(self):
@@ -43,34 +48,34 @@ class DiscordBot(discord.Client):
 
         print(f'{self.user.name} has connected to Discord!')
 
-    # discord method
-    async def on_message(self, message: discord.Message):
-        """
-        Once a message is received on the current guild/server.
-
-        Parameters:
-
-        - `{discord.Message} message` - The message that was received.
-        """
-        if message.author == self.user:
-            return
-
-        command = message.content
-
-        try:
-            sender = USERS[str(message.author.id)]
-        except KeyError:
-            sender = message.author.name
-
-        msg = handle_command(command, sender)
-
-        if msg is not None:
-            try:
-                await self.__send_message(message, msg)
-            except BaseException as e:
-                print(e)
-                await self.stop(error=True)
-
+    # # discord method
+    # async def on_message(self, message: discord.Message):
+    #     """
+    #     Once a message is received on the current guild/server.
+    #
+    #     Parameters:
+    #
+    #     - `{discord.Message} message` - The message that was received.
+    #     """
+    #     if message.author == self.user:
+    #         return
+    #
+    #     command = message.content
+    #
+    #     try:
+    #         sender = USERS[str(message.author.id)]
+    #     except KeyError:
+    #         sender = message.author.name
+    #
+    #     msg = handle_command(command, sender)
+    #
+    #     if msg is not None:
+    #         try:
+    #             await self.__send_message(message, msg)
+    #         except BaseException as e:
+    #             print(e)
+    #             await self.stop(error=True)
+    #
     async def run(self, token: str) -> None:
         """
         Run the bot
