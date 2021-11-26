@@ -2,7 +2,8 @@
 Command-related functions for the bot
 """
 
-from discord.ext.commands import Context, Bot
+from discord.ext.commands import Context, Bot, CommandError
+import discord.ext.commands.errors as command_errors
 from strings import strings
 from commands.handlers import handle_math_command, handle_joke_command, handle_code_command
 
@@ -32,7 +33,6 @@ def __add_jew_command(bot):
     @bot.command(name="jew", brief=strings["briefs"]["jew"])
     async def jew(ctx: Context):
         await ctx.send(strings["tags"]["eli"])
-
 
 def __add_crackhead_command(bot: Bot):
     @bot.command(name="crackhead", brief=strings["briefs"]["crackhead"])
@@ -86,6 +86,15 @@ def __add_math_command(bot: Bot):
     @bot.command(name="math", brief=strings["briefs"]["math"])
     async def math(ctx: Context, expression: str):
         await ctx.send(handle_math_command(expression))
+
+    @math.error
+    async def math_error(ctx: Context, error: CommandError):
+        message = "Something went wrong..."
+        if isinstance(error, command_errors.MissingRequiredArgument):
+            message = strings["errors_math"]["blank"]
+
+        await ctx.send(message, delete_after=5)
+        await ctx.message.delete(delay=5)
 
 
 async def __send_long_message(ctx: Context, message: str):
