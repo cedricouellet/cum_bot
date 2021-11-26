@@ -74,9 +74,8 @@ def handle_joke_command(argument: str) -> str:
 
         content = fetch_joke_by_category(enum_category)
         setup, delivery, category = content
-        return strings['joke']['answer'] + f'Category: {category.upper()}\n\n**{setup}**\n*{delivery}*'
+        return strings['replies']['joke'] + f'Category: {category.upper()}\n\n**{setup}**\n*{delivery}*'
     except HTTPError:
         return strings['errors_joke']['http_error']
-    except BaseException as e: # noqa (we want to handle all errors)
-        print(e.__str__())
+    except: # noqa (we want to handle all errors)
         return strings['errors_joke']['invalid']

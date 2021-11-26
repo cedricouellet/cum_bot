@@ -6,7 +6,6 @@ strings = {
     },
     "errors_joke": {
         "http_error": "Fuck my internet's down.\n\nTry again later.",
-        "answer": "Here's your shitty joke, asshole:\n\n",
         "invalid": "That's not a valid joke category, you dumb fuck.\n\n" +
                    "The valid categories are: *Any, Misc, Programming, Dark, Pun, Spooky, Christmas*"
     },
@@ -14,6 +13,7 @@ strings = {
         "os_error": "Can't do that. Something went wrong..."
     },
     "replies": {
+        "joke": "Here's your shitty joke, asshole:\n\n",
         "oleg": "That's right. I fucked oleg's mom",
         "jizz": "shoombool culo",
         "sale": "Sale nègre",
