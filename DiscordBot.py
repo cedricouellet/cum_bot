@@ -32,9 +32,10 @@ class DiscordBot(commands.Bot):
         self.token = None
         self.dev = dev
 
-        @self.command(name="test")
-        async def test(ctx, name, age):
-            response = "Hello "
+        @self.command(name="add")
+        async def add(ctx, num1, num2):
+            response = num1 + num2
+            ctx.send(response)
 
     # discord method
     async def on_ready(self):
