@@ -5,7 +5,6 @@ Command-related functions for the bot
 from discord.ext.commands import Context, Bot
 from strings import strings
 from commands.handlers import handle_math_command, handle_joke_command, handle_code_command
-from utils.api_calls import JokeCategory
 
 
 def init(bot: Bot):
@@ -78,8 +77,8 @@ def __add_code_command(bot: Bot):
 
 
 def __add_joke_command(bot: Bot):
-    @bot.command(name="joke", brief=strings["briefs"]["joke"])
-    async def joke(ctx: Context, category: JokeCategory = JokeCategory.ANY):
+    @bot.command(name="joke", brief=strings["briefs"]["joke"], description=strings["descriptions"]["joke"])
+    async def joke(ctx: Context, category: str = None):
         await ctx.send(handle_joke_command(category))
 
 
@@ -87,4 +86,3 @@ def __add_math_command(bot: Bot):
     @bot.command(name="math", brief=strings["briefs"]["math"])
     async def math(ctx: Context, expression: str):
         await ctx.send(handle_math_command(expression))
-

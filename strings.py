@@ -36,6 +36,9 @@ strings = {
         "loser": "Summon Cedric.",
         "math": "Calculate a math expression.",
         "joke": "Tells a joke based on a category. By default, category is Any."
+    },
+    "descriptions": {
+        "joke": "Valid categories are: Any, Misc, Programming, Dark, Pun, Spooky, Christmas."
     }
 }
 """
