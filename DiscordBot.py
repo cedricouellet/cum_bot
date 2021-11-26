@@ -33,9 +33,8 @@ class DiscordBot(commands.Bot):
         self.dev = dev
 
         @self.command(name="test")
-        async def test(ctx, args):
-            print('help')
-            print('args')
+        async def test(ctx, name, age):
+            response = "Hello "
 
     # discord method
     async def on_ready(self):
