@@ -18,6 +18,7 @@ class JokeCategory(Enum):
 
 
 def __make_joke_request(category: JokeCategory) -> Tuple[str, str, str]:
+    print(category, category.value)
     joke = requests.get(f'https://v2.jokeapi.dev/joke/{category.value}').json()
     setup = joke['setup']
     delivery = joke['delivery']
