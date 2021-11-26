@@ -65,18 +65,17 @@ def handle_joke_command(argument: str) -> str:
 
     try:
         enum_category = JokeCategory.ANY
-        for cat in JokeCategory.enum_members:
-            print(cat, cat.value)
-            if cat.value.lower() == argument.lower():
-                enum_category = cat
-                break
 
-        print(enum_category)
+        if argument is not None:
+            for cat in JokeCategory:
+                if cat.value.lower() == argument.lower():
+                    enum_category = cat
+                    break
+
         content = fetch_joke_by_category(enum_category)
         setup, delivery, category = content
         return strings['joke']['answer'] + f'Category: {category.upper()}\n\n**{setup}**\n*{delivery}*'
     except HTTPError:
         return strings['errors_joke']['http_error']
     except BaseException as e: # noqa (we want to handle all errors)
-        print(e)
         return strings['errors_joke']['invalid']
