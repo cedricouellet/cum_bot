@@ -89,7 +89,7 @@ def __add_math_command(bot: Bot):
 
 
 async def __send_long_message(ctx: Context, message: str):
-    limit = 4000
+    limit = 2000
     i = len(message)
     while i > 0:
         if i > limit:
