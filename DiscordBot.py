@@ -32,7 +32,7 @@ class DiscordBot(commands.Bot):
         self.token = None
         self.dev = dev
 
-        botcom.handle_add(self)
+        botcom.add_command(self, botcom.CommandType.ADD)
 
     # discord method
     async def on_ready(self):
