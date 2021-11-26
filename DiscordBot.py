@@ -17,7 +17,7 @@ class DiscordBot(Bot):
     """
     CumBot 0.1.0
     """
-    def __init__(self, dev: bool):
+    def __init__(self, dev: bool, giphy_api_key: str):
         """
         Constructor
 
@@ -27,11 +27,22 @@ class DiscordBot(Bot):
 
         If so, the bot will be quiet when logging in and out.
         """
-        super().__init__(command_prefix='!')
-        self.token = None
+        super().__init__(command_prefix='/')
+        self.discord_token = None
+        self.giphy_api_key = giphy_api_key
         self.dev = dev
 
-        commands.init(self)
+        commands.add_code_command(self)
+        commands.add_jew_command(self)
+        commands.add_jizz_command(self)
+        commands.add_joke_command(self)
+        commands.add_math_command(self)
+        commands.add_loser_command(self)
+        commands.add_fuckyou_command(self)
+        commands.add_sale_command(self)
+        commands.add_crackhead_command(self)
+        commands.add_oleg_command(self)
+        commands.add_gif_command(self, self.giphy_api_key)
 
     # discord method
     async def on_ready(self):
@@ -45,17 +56,17 @@ class DiscordBot(Bot):
 
         print(f'{self.user.name} has connected to Discord!')
 
-    async def run(self, token: str) -> None:
+    async def run(self, discord_token: str) -> None:
         """
         Run the bot
 
         Parameters:
 
-        - `{str} token` - The token to use to login to Discord
+        - `{str} discord_token` - The token to use to login to Discord
         """
-        self.token = token
+        self.discord_token = discord_token
 
-        await self.start(token)
+        await self.start(discord_token)
 
     async def stop(self, error: bool = False) -> None:
         """

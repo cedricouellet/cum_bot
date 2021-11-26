@@ -25,6 +25,16 @@ def __make_joke_request(category: JokeCategory) -> Tuple[str, str, str]:
     return setup, delivery, category.value
 
 
+def __make_giphy_request(search: str, giphy_api_key: str) -> str:
+    base_url = f'https://api.giphy.com/v1/gifs/'
+    api_key = f'api_key={giphy_api_key}'
+
+    if search is None:
+        base_url += f'trending?q={search}&api_key={giphy_api_key}&limit=1'
+    else:
+        base_url += f'search?&{api_key}'
+
+
 def fetch_joke_by_category(category: JokeCategory = JokeCategory.ANY) -> Tuple[str, str, str]:
     """
     Get a random joke.
@@ -53,3 +63,7 @@ def fetch_joke_by_category(category: JokeCategory = JokeCategory.ANY) -> Tuple[s
             return __make_joke_request(category)
         except BaseException as e:  # if it fails again, raise the error
             raise e
+
+
+def fetch_gif_by_search(search: str, giphy_api_key: str) -> str:
+    print(search, giphy_api_key)

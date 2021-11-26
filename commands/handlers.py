@@ -7,7 +7,7 @@ from typing import Union
 from requests.exceptions import HTTPError
 
 from utils.math import calculate_expression
-from utils.api_calls import fetch_joke_by_category
+from utils.api_calls import fetch_joke_by_category, fetch_gif_by_search
 from utils.file_utils import scrape_all_files
 
 from strings import strings
@@ -79,3 +79,12 @@ def handle_joke_command(argument: str) -> str:
         return strings['errors_joke']['http_error']
     except: # noqa (we want to handle all errors)
         return strings['errors_joke']['invalid']
+
+
+def handle_gif_command(argument1: str, argument2: str) -> str:
+    try:
+        return fetch_gif_by_search(argument1, argument2)
+    except HTTPError:
+        return strings["errors_gif"]["http_error"]
+    except: # noqa (we want to handle all errors)
+        return strings["errors_gif"]["unexpected"]

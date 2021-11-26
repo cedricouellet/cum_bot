@@ -15,15 +15,16 @@ from DiscordBot import DiscordBot
 
 load_dotenv()
 ENVIRONMENT = os.getenv('ENVIRONMENT')
-TOKEN = os.getenv('DISCORD_TOKEN')
+DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
+GIPHY_API_KEY = os.getenv('GIPHY_API_KEY')
 
 IS_PROD = ENVIRONMENT.lower().startswith('prod')
 
-bot = DiscordBot(dev=IS_PROD is False)
+bot = DiscordBot(dev=IS_PROD is False, giphy_api_key=GIPHY_API_KEY)
 
 
 async def __up() -> None:
-    await bot.run(token=TOKEN)
+    await bot.run(discord_token=DISCORD_TOKEN)
 
 
 async def __down() -> None:

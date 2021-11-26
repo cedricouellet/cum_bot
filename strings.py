@@ -12,6 +12,10 @@ strings = {
     "errors_code": {
         "os_error": "Can't do that. Something went wrong..."
     },
+    "errors_gif": {
+        "http_error": "Fuck my internet's down.\n\nTry again later.",
+        "unexpected": "Could't fetch a GIF for that.\n\nTry again with a different search."
+    },
     "replies": {
         "joke": "Here's your shitty joke, asshole:\n\n",
         "oleg": "That's right. I fucked oleg's mom",
@@ -35,10 +39,11 @@ strings = {
         "crackhead": "Summon Felix.",
         "loser": "Summon Cedric.",
         "math": "Calculate a math expression.",
-        "joke": "Tells a joke based on a category. By default, category is Any."
+        "joke": "Tells a joke based on a category. By default, category is Any.",
+        "gif": "Searches a GIF by its name or gets a trending gif."
     },
     "descriptions": {
-        "joke": "Valid categories are: Any, Misc, Programming, Dark, Pun, Spooky, Christmas."
+        "joke": "Valid categories are: Any, Misc, Programming, Dark, Pun, Spooky, Christmas.",
     }
 }
 """
