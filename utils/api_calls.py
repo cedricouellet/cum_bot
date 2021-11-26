@@ -34,9 +34,7 @@ def __make_giphy_request(search: str, giphy_api_key: str) -> str:
         query_url += f'search?q={search}&api_key={giphy_api_key}&limit=1'
 
     gif = requests.get(query_url).json()
-    url = gif['url']
-
-    print(url)
+    url = gif["data"]["url"]
 
     return url
 

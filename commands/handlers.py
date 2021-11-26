@@ -86,6 +86,6 @@ def handle_gif_command(argument1: str, argument2: str) -> str:
         return fetch_gif_by_search(argument1, argument2)
     except HTTPError:
         return strings["errors_gif"]["http_error"]
-    # except BaseException as e: # noqa (we want to handle all errors)d
-    #     print(e)
-    #     return strings["errors_gif"]["unexpected"]
+    except BaseException as e: # noqa (we want to handle all errors)d
+        print(e)
+        return strings["errors_gif"]["unexpected"]
