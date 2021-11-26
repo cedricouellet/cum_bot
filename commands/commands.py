@@ -4,7 +4,7 @@ Command-related functions for the bot
 
 from discord.ext.commands import Context, Bot
 from strings import strings
-from handlers import handle_math_command, handle_joke_command, handle_code_command
+from commands.handlers import handle_math_command, handle_joke_command, handle_code_command
 from utils.api_calls import JokeCategory
 
 
