@@ -2,7 +2,6 @@ import discord
 from discord.ext.commands import Bot
 from commands import commands
 
-VERSION = "v0.2.0"
 
 GENERAL_CHANNEL = '912567550209056778'
 CUMBOT_TAG = '<@912110450676727809>'
@@ -28,7 +27,7 @@ class DiscordBot(Bot):
 
         If so, the bot will be quiet when logging in and out.
         """
-        super().__init__(command_prefix='!', help_command=f"CumBot {VERSION}")
+        super().__init__(command_prefix='!')
         self.token = None
         self.dev = dev
 
