@@ -26,14 +26,15 @@ def __make_joke_request(category: JokeCategory) -> Tuple[str, str, str]:
 
 
 def __make_giphy_request(search: str, giphy_api_key: str) -> str:
-    base_url = f'https://api.giphy.com/v1/gifs/'
-    api_key = f'api_key={giphy_api_key}'
+    query_url = f'https://api.giphy.com/v1/gifs/'
 
     if search is None:
-        base_url += f'trending?q={search}&api_key={giphy_api_key}&limit=1'
+        query_url += f'trending?api_key={giphy_api_key}&limit=1'
     else:
-        base_url += f'search?&{api_key}'
+        query_url += f'search?q={search}&api_key={giphy_api_key}&limit=1'
 
+    gif = requests.get(query_url).json()
+    print(gif)
 
 def fetch_joke_by_category(category: JokeCategory = JokeCategory.ANY) -> Tuple[str, str, str]:
     """
