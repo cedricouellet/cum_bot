@@ -78,4 +78,5 @@ def handle_joke_command(argument: str) -> str:
     except HTTPError:
         return strings['errors_joke']['http_error']
     except BaseException as e: # noqa (we want to handle all errors)
+        print(e)
         return strings['errors_joke']['invalid']
