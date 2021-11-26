@@ -90,10 +90,3 @@ class DiscordBot(Bot):
         """
         await member.create_dm()
         await member.dm_channel.send(f'{member.name}, you\'re my slave now.')
-
-    # @staticmethod
-    # async def __send_message(in_message: discord.Message, out_message: str) -> None:
-    #     if len(out_message) > 2000:
-    #
-    #     else:
-    #         await in_message.channel.send(out_message)
