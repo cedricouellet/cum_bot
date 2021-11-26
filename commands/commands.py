@@ -1,77 +1,90 @@
 """
-The main command module.
+Command-related functions for the bot
 """
 
-from typing import Union
-
-from utils.file_utils import scrape_all_files
-
-from replies import REPLIES
-
-from .handlers import handle_math_command, handle_joke_command, handle_help_command
-from .constants import PREFIX
+from discord.ext.commands import Context, Bot
+from strings import strings
+from handlers import handle_math_command, handle_joke_command, handle_code_command
+from utils.api_calls import JokeCategory
 
 
-__reply_mapping = {
-    'sale': REPLIES['funny']['sale'],
-    'jizz': REPLIES['funny']['jizz'],
-    'fuckyou': REPLIES['insults']['fuckyou'],
-    'oleg': REPLIES['funny']['oleg'],
-    'jew': REPLIES['tags']['eli'],
-    'crackhead': REPLIES['tags']['felix'],
-    'loser': REPLIES['tags']['cedric']
-}
-
-
-def __code() -> str:
-    return scrape_all_files()
-
-
-def __joke(command) -> str:
-    return handle_joke_command(command)
-
-
-def __math(command) -> str:
-    return str(handle_math_command(command))
-
-
-def __usage(sender) -> str:
-    return handle_help_command(sender)
-
-
-def handle_command(command: str, sender: str) -> Union[str, None]:
+def init(bot: Bot):
     """
-    Handle a command being made by the user
+    Initialise the bot
 
     Parameters:
 
-    - `{str} command` - The command to be handled
+    - `{discord.commands.Bot} bot` - The bot for which to initialize commands
 
-    - `{str} sender` - The user who sent the command
-
-    Returns:
-
-    - `{str|None}` - The response to the command
     """
-    if not command.startswith(PREFIX):
-        return None
+    __add_joke_command(bot)
+    __add_math_command(bot)
+    __add_code_command(bot)
+    __add_sale_command(bot)
+    __add_jizz_command(bot)
+    __add_fuckyou_command(bot)
+    __add_oleg_command(bot)
+    __add_jew_command(bot)
+    __add_crackhead_command(bot)
+    __add_loser_command(bot)
 
-    command = command[1:]
 
-    if command in __reply_mapping:
-        return __reply_mapping[command]
+def __add_jew_command(bot):
+    @bot.command(name="jew", brief=strings["briefs"]["jew"])
+    async def jew(ctx: Context):
+        await ctx.send(strings["tags"]["eli"])
 
-    if command.startswith('math'):
-        return __math(command)
 
-    if command.startswith('joke'):
-        return __joke(command)
+def __add_crackhead_command(bot: Bot):
+    @bot.command(name="crackhead", brief=strings["briefs"]["crackhead"])
+    async def crackhead(ctx: Context):
+        await ctx.send(strings["tags"]["felix"])
 
-    if command == 'help':
-        return __usage(sender)
 
-    if command == 'code':
-        try:
-            return __code()
-        except OSError:
-            return REPLIES['other']['unexpectederror']
+def __add_loser_command(bot: Bot):
+    @bot.command(name="loser", brief=strings["briefs"]["loser"])
+    async def loser(ctx: Context):
+        await ctx.send(strings["tags"]["cedric"])
+
+
+def __add_oleg_command(bot: Bot):
+    @bot.command(name="oleg", brief=strings["briefs"]["oleg"])
+    async def oleg(ctx: Context):
+        await ctx.send(strings["replies"]["oleg"])
+
+
+def __add_sale_command(bot: Bot):
+    @bot.command(name="sale", brief=strings["briefs"]["sale"])
+    async def sale(ctx: Context):
+        await ctx.send(strings["replies"]["sale"])
+
+
+def __add_jizz_command(bot: Bot):
+    @bot.command(name="jizz", brief=strings["briefs"]["jizz"])
+    async def jizz(ctx: Context):
+        await ctx.send(strings["replies"]["jizz"])
+
+
+def __add_fuckyou_command(bot: Bot):
+    @bot.command(name="fuckyou", brief=strings["briefs"]["fuckyou"])
+    async def jizz(ctx: Context):
+        await ctx.send(strings["replies"]["fuckyou"])
+
+
+def __add_code_command(bot: Bot):
+    @bot.command(name="code", brief=strings["briefs"]["code"])
+    async def code(ctx: Context):
+        await ctx.send(handle_code_command())
+
+
+def __add_joke_command(bot: Bot):
+    @bot.command(name="joke", brief=strings["briefs"]["joke"])
+    async def joke(ctx: Context, category: JokeCategory = JokeCategory.ANY):
+        await ctx.send(handle_joke_command(category))
+
+
+def __add_math_command(bot: Bot):
+    @bot.command(name="math", brief=strings["briefs"]["math"])
+    async def math(ctx: Context, expression: str):
+        await ctx.send(handle_math_command(expression))
+

@@ -12,7 +12,7 @@ __DIRS = [
 __ROOT_FILES = [
     '__main__.py',
     'DiscordBot.py',
-    'replies.py'
+    'strings.py'
 ]
 
 
@@ -42,7 +42,7 @@ def scrape_all_files(root_files: [str] = None, dirs: [str] = None) -> str:
         Files:
             - ./main.py
             - ./DiscordBot.py
-            - ./replies.py
+            - ./strings.py
         Directories:
             - /commands/
             - /utils/

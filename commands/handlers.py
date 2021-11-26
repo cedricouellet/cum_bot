@@ -8,75 +8,66 @@ from requests.exceptions import HTTPError
 
 from utils.math import calculate_expression
 from utils.api_calls import fetch_joke_by_category
+from utils.file_utils import scrape_all_files
 
-from replies import REPLIES
-from .constants import COMMANDS
+from strings import strings
+from utils.api_calls import JokeCategory
 
 
-def handle_math_command(command: str) -> Union[int, any]:
+def handle_code_command() -> str:
     """
-    Handle the math command
-
-    Parameters:
-
-    - `{str} command` - The command
+    Handle the code command
 
     Returns:
 
     - `{str}` - The result of the command or a comedic error message
     """
     try:
-        return calculate_expression(command[5:].strip())
+        return scrape_all_files()
+    except OSError:
+        return strings['errors_code']['os_error']
+
+
+def handle_math_command(argument: str) -> Union[int, any]:
+    """
+    Handle the math command
+
+    Parameters:
+
+    - `{str} argument` - The argument
+
+    Returns:
+
+    - `{str}` - The result of the command or a comedic error message
+    """
+    try:
+        return calculate_expression(argument)
     except OverflowError:
-        return REPLIES['math']['overflow']
+        return strings['errors_math']['overflow']
     except SyntaxError:
-        return REPLIES['math']['blank']
+        return strings['errors_math']['blank']
     except: # noqa (all other errors should default to the same error message)
-        return REPLIES['math']['invalid']
+        return strings['errors_math']['invalid']
 
 
-def handle_joke_command(command) -> str:
+def handle_joke_command(argument: JokeCategory) -> str:
     """
     Handle the joke command
 
     Parameters:
 
-    - `{str}` - The
+    - `{str}` - The argument
 
     Returns:
 
     - `{str}` - The joke or a comedic error message
     """
 
-    category = command[5:].strip()
-
     try:
-        if category == "":
-            content = fetch_joke_by_category()
-        else:
-            content = fetch_joke_by_category(category)
-
+        content = fetch_joke_by_category(argument)
         setup, delivery, category = content
-        return REPLIES['joke']['answer'] + f'Category: {category.upper()}\n\n**{setup}**\n*{delivery}*'
+        return strings['joke']['answer'] + f'Category: {category.upper()}\n\n**{setup}**\n*{delivery}*'
     except HTTPError:
-        return REPLIES['joke']['httperror']
+        return strings['errors_joke']['http_error']
     except: # noqa (we want to handle all errors)
-        return REPLIES['joke']['invalid']
-
-
-def handle_help_command(sender: str) -> str:
-    """
-    Handle the help command
-
-    Returns:
-
-    - `{str}` - The help message
-    """
-    header = f'''
-    **CumBot v0.1.0**
-
-    Here {sender}, these are the available commands asshole:
-    '''
-
-    commands_str = '\n- ' + '\n- '.join(COMMANDS)
-    return header + commands_str
+        return strings['errors_joke']['invalid']

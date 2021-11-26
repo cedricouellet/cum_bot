@@ -4,23 +4,34 @@ Functions which make API calls to obtain data.
 
 from typing import Tuple
 import requests
+from enum import Enum
 
 
-def __make_joke_request(category: str) -> Tuple[str, str, str]:
-    joke = requests.get(f'https://v2.jokeapi.dev/joke/{category}').json()
+class JokeCategory(Enum):
+    ANY = "any"
+    DARK = "dark"
+    PROGRAMMER = "programmer"
+    MISC = "misc"
+    PUN = "pun"
+    SPOOKY = "spooky"
+    CHRISTMAS = "christmas"
+
+
+def __make_joke_request(category: JokeCategory) -> Tuple[str, str, str]:
+    joke = requests.get(f'https://v2.jokeapi.dev/joke/{category.value}').json()
     setup = joke['setup']
     delivery = joke['delivery']
 
-    return setup, delivery, category
+    return setup, delivery, category.value
 
 
-def fetch_joke_by_category(category: str = "Any") -> Tuple[str, str, str]:
+def fetch_joke_by_category(category: JokeCategory = JokeCategory.ANY) -> Tuple[str, str, str]:
     """
     Get a random joke.
 
     Parameters:
 
-    - `{str?} category` - The category of the joke (optional)
+    - `{JokeCategory} category` - The category of the joke (optional)
 
 
     Returns:
