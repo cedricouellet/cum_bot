@@ -1,8 +1,6 @@
 import discord
-from discord.ext import commands
-from discord.ext.commands import command
-from commands.commands import handle_command
-import commands.bot_commands as botcom
+from discord.ext.commands import Bot
+from commands import commands
 
 GENERAL_CHANNEL = '912567550209056778'
 CUMBOT_TAG = '<@912110450676727809>'
@@ -14,14 +12,14 @@ USERS = {
 }
 
 
-class DiscordBot(commands.Bot):
+class DiscordBot(Bot):
     """
     CumBot 0.1.0
     """
     def __init__(self, dev: bool):
         """
         Constructor
-        
+
         Parameters:
 
         - `{bool} dev` - Whether or not this is being called from a development environment.
@@ -32,7 +30,7 @@ class DiscordBot(commands.Bot):
         self.token = None
         self.dev = dev
 
-        botcom.add_command(self, botcom.CommandType.ADD)
+        commands.init(self)
 
     # discord method
     async def on_ready(self):
@@ -46,34 +44,6 @@ class DiscordBot(commands.Bot):
 
         print(f'{self.user.name} has connected to Discord!')
 
-    # # discord method
-    # async def on_message(self, message: discord.Message):
-    #     """
-    #     Once a message is received on the current guild/server.
-    #
-    #     Parameters:
-    #
-    #     - `{discord.Message} message` - The message that was received.
-    #     """
-    #     if message.author == self.user:
-    #         return
-    #
-    #     command = message.content
-    #
-    #     try:
-    #         sender = USERS[str(message.author.id)]
-    #     except KeyError:
-    #         sender = message.author.name
-    #
-    #     msg = handle_command(command, sender)
-    #
-    #     if msg is not None:
-    #         try:
-    #             await self.__send_message(message, msg)
-    #         except BaseException as e:
-    #             print(e)
-    #             await self.stop(error=True)
-    #
     async def run(self, token: str) -> None:
         """
         Run the bot
@@ -113,23 +83,23 @@ class DiscordBot(commands.Bot):
         When a member joins
 
         Parameters:
-        
+
         - `{discord.Member} member` - The member that joined
         """
         await member.create_dm()
         await member.dm_channel.send(f'{member.name}, you\'re my slave now.')
 
-    @staticmethod
-    async def __send_message(in_message: discord.Message, out_message: str) -> None:
-        if len(out_message) > 2000:
-            i = len(out_message)
-            while i > 0:
-                if i > 2000:
-                    await in_message.channel.send(out_message[:2000])
-                    out_message = out_message[2000:]
-                    i -= 2000
-                else:
-                    await in_message.channel.send(out_message[:i])
-                    i = 0
-        else:
-            await in_message.channel.send(out_message)
+    # @staticmethod
+    # async def __send_message(in_message: discord.Message, out_message: str) -> None:
+    #     if len(out_message) > 2000:
+    #         i = len(out_message)
+    #         while i > 0:
+    #             if i > 2000:
+    #                 await in_message.channel.send(out_message[:2000])
+    #                 out_message = out_message[2000:]
+    #                 i -= 2000
+    #             else:
+    #                 await in_message.channel.send(out_message[:i])
+    #                 i = 0
+    #     else:
+    #         await in_message.channel.send(out_message)
