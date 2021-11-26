@@ -35,6 +35,7 @@ def __make_giphy_request(search: str, giphy_api_key: str) -> str:
 
     gif = requests.get(query_url).json()
     print(gif)
+    return "hi"
 
 def fetch_joke_by_category(category: JokeCategory = JokeCategory.ANY) -> Tuple[str, str, str]:
     """
