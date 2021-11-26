@@ -32,8 +32,8 @@ class DiscordBot(commands.Bot):
         self.token = None
         self.dev = dev
 
-        @self.command(name="help")
-        async def help(ctx):
+        @self.command(name="test")
+        async def test(ctx):
             print('help')
 
     # discord method
