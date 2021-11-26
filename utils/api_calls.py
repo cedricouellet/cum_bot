@@ -37,6 +37,7 @@ def __make_giphy_request(search: str, giphy_api_key: str) -> str:
     print(gif)
     return "hi"
 
+
 def fetch_joke_by_category(category: JokeCategory = JokeCategory.ANY) -> Tuple[str, str, str]:
     """
     Get a random joke.
@@ -68,4 +69,12 @@ def fetch_joke_by_category(category: JokeCategory = JokeCategory.ANY) -> Tuple[s
 
 
 def fetch_gif_by_search(search: str, giphy_api_key: str) -> str:
-    print(search, giphy_api_key)
+    try:
+        return __make_giphy_request(search, giphy_api_key)
+    except requests.exceptions.HTTPError as e:
+        raise e
+    except: # noqa (for all other errors)
+        try: # try one more time
+            return __make_giphy_request(search, giphy_api_key)
+        except BaseException as e: # if it fails again, raise the error
+            raise e
