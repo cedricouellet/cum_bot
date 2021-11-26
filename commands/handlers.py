@@ -71,6 +71,7 @@ def handle_joke_command(argument: str) -> str:
                 enum_category = cat
                 break
 
+        print(enum_category)
         content = fetch_joke_by_category(enum_category)
         setup, delivery, category = content
         return strings['joke']['answer'] + f'Category: {category.upper()}\n\n**{setup}**\n*{delivery}*'
