@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import command
 from commands.commands import handle_command
-
+import commands.bot_commands as botcom
 
 GENERAL_CHANNEL = '912567550209056778'
 CUMBOT_TAG = '<@912110450676727809>'
@@ -32,10 +32,7 @@ class DiscordBot(commands.Bot):
         self.token = None
         self.dev = dev
 
-        @self.command(name="add")
-        async def add(ctx, num1, num2):
-            response = num1 + num2
-            await ctx.send(response)
+        botcom.handle_add(self)
 
     # discord method
     async def on_ready(self):
