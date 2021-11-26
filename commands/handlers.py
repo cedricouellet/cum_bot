@@ -66,6 +66,7 @@ def handle_joke_command(argument: str) -> str:
     try:
         enum_category = JokeCategory.ANY
         for cat in JokeCategory.enum_members:
+            print(cat, cat.value)
             if cat.value.lower() == argument.lower():
                 enum_category = cat
                 break
