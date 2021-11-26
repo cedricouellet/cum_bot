@@ -35,7 +35,7 @@ class DiscordBot(commands.Bot):
         @self.command(name="add")
         async def add(ctx, num1, num2):
             response = num1 + num2
-            ctx.send(response)
+            await ctx.send(response)
 
     # discord method
     async def on_ready(self):
