@@ -6,27 +6,29 @@ import discord
 from discord.ext.commands import Bot
 from typing import List, Callable
 
-GENERAL_CHANNEL = '912567550209056778'
 CUMBOT_TAG = '<@912110450676727809>'
 AUTHOR_TAG = '<@359068019286212618>'
 
 
-class DiscordBot(Bot):
+class CumBot(Bot):
+    BOT_ARRIVAL_MSG = f"{CUMBOT_TAG} is here assholes!"
+
     """
     CumBot 0.1.0
     """
-    def __init__(self, is_dev: bool, command_listeners: List[Callable[[Bot], None]]):
+    def __init__(self, is_dev: bool, command_listeners: List[Callable[[Bot], None]], bot_home_channel: str):
         """
-        Constructor
+        Initialize an instance of the CumBot
 
         :param is_dev: Whether or not this is being called from a development environment.
                     If so, the bot will be quiet when logging in and out
-
         :param command_listeners: The list of command listeners
+        :param bot_home_channel: The home channel of the bot.
         """
         super().__init__(command_prefix='!')
         self.discord_token = None
         self.dev = is_dev
+        self.bot_home_channel = bot_home_channel
 
         for on_command in command_listeners:
             on_command(self)
@@ -35,13 +37,12 @@ class DiscordBot(Bot):
         """
         Once the bot is online.
         """
-        channels = self.get_all_channels()
         if self.dev is True:
-            for channel in channels:
-                if channel.name == "dev":
-                    await channel.send(f"*{CUMBOT_TAG} is here assholes!*")
+            channel = self.get_home_channel()
+            await channel.send(self.BOT_ARRIVAL_MSG)
 
         print(f'{self.user.name} has connected to Discord!')
+        print(self.user.id)
 
     async def run(self, discord_token: str) -> None:
         """
@@ -57,7 +58,7 @@ class DiscordBot(Bot):
 
         :param is_error: Whether or not the bot is shutting down due to an error
         """
-        channel = self.get_channel(int(GENERAL_CHANNEL))
+        channel = self.get_home_channel()
 
         if is_error:
             msg = f"*I crashed cause {AUTHOR_TAG} can't code for shit...*"
@@ -78,3 +79,14 @@ class DiscordBot(Bot):
         """
         await member.create_dm()
         await member.dm_channel.send(f'{member.name}, you\'re my slave now.')
+
+    def get_home_channel(self) -> any:
+        """
+        Get the bot's home channel
+
+        :return: The bot's home channel
+        """
+        for channel in self.get_all_channels():
+            if channel.name == self.bot_home_channel:
+                return channel
+        return None

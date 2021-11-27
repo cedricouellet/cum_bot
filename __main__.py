@@ -13,7 +13,7 @@ import asyncio
 from dotenv import load_dotenv
 
 import commands.commands as c
-from discord_bot import DiscordBot
+from cum_bot import CumBot
 
 load_dotenv()
 ENVIRONMENT = os.getenv('ENVIRONMENT')
@@ -38,7 +38,7 @@ listeners = [
     c.on_command_oleg,
     c.on_command_fuckyou,
 ]
-bot = DiscordBot(is_dev=not IS_PROD, command_listeners=listeners)
+bot = CumBot(is_dev=not IS_PROD, command_listeners=listeners, bot_home_channel="dev")
 
 
 async def __up() -> None:
