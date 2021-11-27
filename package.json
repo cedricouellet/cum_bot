@@ -1,6 +1,6 @@
 {
   "name": "cum_bot",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A custom Discord bot for highschool friends",
   "main": "bot.js",
   "author": "Cedric-A. Ouellet",

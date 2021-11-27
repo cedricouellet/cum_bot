@@ -2,10 +2,13 @@
 Giphy API Requests
 """
 
+from dotenv import load_dotenv
 import requests
 import os
 
+load_dotenv()
 GIPHY_API_KEY = os.getenv('GIPHY_API_KEY')
+
 GIPHY_API_URL = 'https://api.giphy.com/v1/gifs'
 
 
@@ -21,6 +24,7 @@ def __make_giphy_request(search: str = None) -> str:
         query_url = f'{GIPHY_API_URL}/random?api_key={GIPHY_API_KEY}&limit=1'
 
     data = requests.get(query_url).json()["data"]
+
     if search is not None:
         data = data[0]
 
