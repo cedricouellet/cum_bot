@@ -1,4 +1,4 @@
-# CumBot v0.1.0
+# CumBot v0.2.0
 
 A Discord Bot for my highschool friends (using [discord.py](https://pypi.org/project/discord.py/)).
 
@@ -12,10 +12,12 @@ Written in [Python 3](https://www.python.org/downloads/).
 ---
 
 ## Available Commands:
+
+- To get help: `!help`.
+- To learn more about a command: `!help <command_name>`.
+
 | Command      | Argument(s)                                                            | Definition                                              |
 |--------------|------------------------------------------------------------------------|---------------------------------------------------------|
-| `!help`      | *None*                                                                 | Show available commands.                                |
-| `!code`      | *None*                                                                 | Display the code that made the bot.                     |
 | `!joke`      | *None* OR `any`,`misc`,`programming`,`dark`,`pun`,`spooky`,`christmas` | Tells a joke depending on the category or a random one. |                                       
 | `!math`      | Mathematical expression. Eg: `1+1`                                     | Calculate a mathematical expression.                    |
 | `!jew`       | *None*                                                                 | Summon Eli.                                             |

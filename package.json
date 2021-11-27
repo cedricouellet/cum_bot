@@ -1,8 +1,8 @@
 {
   "name": "cum_bot",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A custom Discord bot for highschool friends",
   "main": "bot.js",
   "author": "Cedric-A. Ouellet",
-  "license": "ISC"
+  "license": "MIT"
 }

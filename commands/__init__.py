@@ -1,3 +1,6 @@
 """
-The commands module, which handles commands which are sent to the bot.
+Commands Module
+
+- commands: Command Listeners
+- functions: Functions that are called by commands
 """
