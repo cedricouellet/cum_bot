@@ -5,6 +5,7 @@ Contains the DiscordBot class
 import discord
 from discord.ext.commands import Bot
 from typing import List, Callable
+from logs.loggers import write_log
 
 
 class CumBot(Bot):
@@ -33,6 +34,8 @@ class CumBot(Bot):
         """
         Once the bot is online.
         """
+        write_log('status: ready')
+
         message = f"<@{self.user.id}> Status: **booting**"
         print(message)
 
@@ -46,6 +49,7 @@ class CumBot(Bot):
 
         :param discord_token: The token to use to login to Discord
         """
+        write_log('status: booting')
         await self.start(discord_token)
 
     async def stop(self, is_error: bool = False) -> None:
@@ -59,8 +63,10 @@ class CumBot(Bot):
         msg = f"<@{self.user.id}> Status: "
         if is_error:
             msg += "**crashing**"
+            write_log('status: crashing')
         else:
             msg += "**shutting down**"
+            write_log('status: shutting down')
 
         print(msg)
 
@@ -76,8 +82,10 @@ class CumBot(Bot):
 
         :param member: The member that joined
         """
+        write_log(f'member join: {member}')
+
         await member.create_dm()
-        await member.dm_channel.send(f'{member.name}, kindly proceed to erase yourself from this world.')
+        await member.dm_channel.send(f'{member}, kindly proceed to erase yourself from this world.')
 
     def get_home_channel(self) -> any:
         """
@@ -87,5 +95,6 @@ class CumBot(Bot):
         """
         for channel in self.get_all_channels():
             if channel.name == self.bot_home_channel:
+                write_log(f'home channel set: {channel}')
                 return channel
         return None
