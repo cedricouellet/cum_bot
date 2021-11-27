@@ -6,8 +6,9 @@ from typing import Union
 from requests.exceptions import HTTPError
 
 from strings import strings
+from utils.JokeCategory import JokeCategory
 from utils.math import calculate_expression
-from utils.joke_requests import fetch_joke, JokeCategory
+from utils.joke_requests import fetch_joke
 from utils.giphy_requests import fetch_gif
 
 
