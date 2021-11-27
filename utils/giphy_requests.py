@@ -8,6 +8,7 @@ import os
 
 load_dotenv()
 GIPHY_API_KEY = os.getenv('GIPHY_API_KEY')
+
 GIPHY_API_URL = 'https://api.giphy.com/v1/gifs'
 
 

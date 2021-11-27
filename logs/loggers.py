@@ -16,5 +16,5 @@ def write_log(log: str) -> None:
     curr_datetime = datetime.now().strftime('%m/%d/%Y, %H:%M:%S')
 
     line = f"[{curr_datetime}] {log}"
-    with open(LOG_FILE, 'w+') as f:
+    with open(LOG_FILE, 'a+') as f:
         f.writelines([line])
