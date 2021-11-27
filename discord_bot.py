@@ -10,6 +10,7 @@ GENERAL_CHANNEL = '912567550209056778'
 CUMBOT_TAG = '<@912110450676727809>'
 AUTHOR_TAG = '<@359068019286212618>'
 
+
 class DiscordBot(Bot):
     """
     CumBot 0.1.0
@@ -34,11 +35,11 @@ class DiscordBot(Bot):
         """
         Once the bot is online.
         """
-        channel = self.get_channel(int(GENERAL_CHANNEL))
-        e = self.owner_id
-        print(e)
-        if self.dev is False:
-            await channel.send(f"*{CUMBOT_TAG} is here assholes!*")
+        channels = self.get_all_channels()
+        if self.dev is True:
+            for channel in channels:
+                if channel.name == "dev":
+                    await channel.send(f"*{CUMBOT_TAG} is here assholes!*")
 
         print(f'{self.user.name} has connected to Discord!')
 
