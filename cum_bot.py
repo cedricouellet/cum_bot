@@ -33,7 +33,7 @@ class CumBot(Bot):
         """
         Once the bot is online.
         """
-        message = "<@{self.user.id}> Status Update: **booting**"
+        message = f"<@{self.user.id}> Status Update: **booting**"
         print(message)
 
         if self.dev is True:
