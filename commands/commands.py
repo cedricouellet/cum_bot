@@ -121,7 +121,7 @@ def on_command_gif(bot: Bot) -> None:
     @bot.command(name="gif", brief=briefs.gif, description=desc.gif)
     async def gif_command(ctx: Context, *, search: str = None) -> None:
         author = ctx.message.author
-        write_log(f'(command) search: arg={search}, name={author.name}, id={author.id}')
+        write_log(f'(command) gif: arg={search}, name={author.name}, id={author.id}')
         await __send_message(ctx, fn.gif(search))
 
 
