@@ -13,13 +13,11 @@ strings = {
         "invalid": "That's not a valid joke category, you dumb fuck.\n\n" +
                    "The valid categories are: *Any, Misc, Programming, Dark, Pun, Spooky, Christmas*"
     },
-    "errors_code": {
-        "os_error": "Can't do that. Something went wrong..."
-    },
     "errors_gif": {
         "http_error": "Fuck my internet's down.\n\nTry again later.",
         "unexpected": "Could't fetch a GIF for that.\n\nTry again with a different search."
     },
+    "error_unknown": "Can't do that... Something went wrong",
     "replies": {
         "joke": "Here's your shitty joke, asshole:\n\n",
         "oleg": "That's right. I fucked oleg's mom",

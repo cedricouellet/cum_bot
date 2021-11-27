@@ -72,3 +72,68 @@ def gif(search: str = None) -> str:
             return strings["errors_gif"]["unexpected"]
     except BaseException: # noqa (we want to handle all other errors)
         return strings["errors_gif"]["unexpected"]
+
+
+def jew() -> str:
+    """
+    Jew function
+
+    :return: A response
+    """
+    return strings["tags"]["eli"]
+
+
+def crackhead() -> str:
+    """
+    Crackhead function
+
+    :return: A response
+    """
+    return strings["tags"]["felix"]
+
+
+def loser() -> str:
+    """
+    Loser function
+
+    :return: A response
+    """
+    return strings["tags"]["cedric"]
+
+
+def oleg() -> str:
+    """
+    Oleg function
+
+    :return: A response
+    """
+    return strings["replies"]["oleg"]
+
+
+def sale() -> str:
+    """
+    Sale function
+
+    :return: A response
+    """
+    return strings["replies"]["sale"]
+
+
+def jizz() -> str:
+    """
+    Jizz function
+
+    :return: A response
+    """
+    return strings["replies"]["jizz"]
+
+
+def fuckyou() -> str:
+    """
+    Fuckyou function
+
+    :return: A response
+    """
+    return strings["replies"]["fuckyou"]
+
+
