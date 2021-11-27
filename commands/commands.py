@@ -1,77 +1,148 @@
 """
-The main command module.
+Listeners for commands
 """
 
-from typing import Union
+from discord.ext.commands import Context, Bot, CommandError
+import discord.ext.commands.errors as command_errors
 
-from utils.file_utils import scrape_all_files
-
-from replies import REPLIES
-
-from .handlers import handle_math_command, handle_joke_command, handle_help_command
-from .constants import PREFIX
-
-
-__reply_mapping = {
-    'sale': REPLIES['funny']['sale'],
-    'jizz': REPLIES['funny']['jizz'],
-    'fuckyou': REPLIES['insults']['fuckyou'],
-    'oleg': REPLIES['funny']['oleg'],
-    'jew': REPLIES['tags']['eli'],
-    'crackhead': REPLIES['tags']['felix'],
-    'loser': REPLIES['tags']['cedric']
-}
+from commands import \
+    functions as fn, \
+    briefs as briefs, \
+    descriptions as desc, \
+    error_messages as err
 
 
-def __code() -> str:
-    return scrape_all_files()
-
-
-def __joke(command) -> str:
-    return handle_joke_command(command)
-
-
-def __math(command) -> str:
-    return str(handle_math_command(command))
-
-
-def __usage(sender) -> str:
-    return handle_help_command(sender)
-
-
-def handle_command(command: str, sender: str) -> Union[str, None]:
+def on_command_jew(bot) -> None:
     """
-    Handle a command being made by the user
+    The command listener for the jew command
 
-    Parameters:
-
-    - `{str} command` - The command to be handled
-
-    - `{str} sender` - The user who sent the command
-
-    Returns:
-
-    - `{str|None}` - The response to the command
+    :param bot: The bot on which to apply the listener
     """
-    if not command.startswith(PREFIX):
-        return None
+    @bot.command(name="jew", brief=briefs.jew, description=desc.jew)
+    async def jew_command(ctx: Context) -> None:
+        await __send_message(ctx, fn.jew())
 
-    command = command[1:]
 
-    if command in __reply_mapping:
-        return __reply_mapping[command]
+def on_command_crackhead(bot: Bot) -> None:
+    """
+    The command listener for the crackhead command
 
-    if command.startswith('math'):
-        return __math(command)
+    :param bot: The bot on which to apply the listener
+    """
+    @bot.command(name="crackhead", brief=briefs.crackhead, description=desc.crackhead)
+    async def crackhead_command(ctx: Context) -> None:
+        await __send_message(ctx, fn.crackhead())
 
-    if command.startswith('joke'):
-        return __joke(command)
 
-    if command == 'help':
-        return __usage(sender)
+def on_command_loser(bot: Bot) -> None:
+    """
+    The command listener for the loser command
 
-    if command == 'code':
-        try:
-            return __code()
-        except OSError:
-            return REPLIES['other']['unexpectederror']
+    :param bot: The bot on which to apply the listener
+    """
+    @bot.command(name="loser", brief=briefs.loser, description=desc.loser)
+    async def loser_command(ctx: Context) -> None:
+        await __send_message(ctx, fn.loser())
+
+
+def on_command_oleg(bot: Bot) -> None:
+    """
+    The command listener for the oleg command
+
+    :param bot: The bot on which to apply the listener
+    """
+    @bot.command(name="oleg", brief=briefs.oleg, description=desc.oleg)
+    async def oleg_command(ctx: Context) -> None:
+        await __send_message(ctx, fn.oleg())
+
+
+def on_command_sale(bot: Bot) -> None:
+    """
+    The command listener for the sale command
+
+    :param bot: The bot on which to apply the listener
+    """
+    @bot.command(name="sale", brief=briefs.sale, description=desc.sale)
+    async def sale_command(ctx: Context) -> None:
+        await __send_message(ctx, fn.sale())
+
+
+def on_command_jizz(bot: Bot) -> None:
+    """
+    The command listener for the jizz command
+
+    :param bot: The bot on which to apply the listener
+    """
+    @bot.command(name="jizz", brief=briefs.jizz, description=desc.jizz)
+    async def jizz_command(ctx: Context) -> None:
+        await __send_message(ctx, fn.jizz())
+
+
+def on_command_fuckyou(bot: Bot) -> None:
+    """
+    The command listener for the fuckyou command
+
+    :param bot: The bot on which to apply the listener
+    """
+    @bot.command(name="fuckyou", brief=briefs.fuckyou, description=desc.fuckyou)
+    async def fuckyou_command(ctx: Context) -> None:
+        await __send_message(ctx, fn.fuckyou())
+
+
+def on_command_joke(bot: Bot) -> None:
+    """
+    The command listener for the joke command
+
+    :param bot: The bot on which to apply the listener
+    """
+    @bot.command(name="joke", brief=briefs.joke, description=desc.joke)
+    async def joke_command(ctx: Context, category: str = None) -> None:
+        await __send_message(ctx, fn.joke(category))
+
+
+def on_command_gif(bot: Bot) -> None:
+    @bot.command(name="gif", brief=briefs.gif, description=desc.gif)
+    async def gif_command(ctx: Context, search: str = None) -> None:
+        await __send_message(ctx, fn.gif(search))
+
+
+def on_command_math(bot: Bot) -> None:
+    """
+    The command listener for the gif command
+
+    :param bot: The bot on which to apply the listener
+    """
+    @bot.command(name="math", brief=briefs.math, description=desc.math)
+    async def math_command(ctx: Context, expression: str) -> None:
+        await __send_message(ctx, fn.math(expression))
+
+    @math_command.error
+    async def math_error(ctx: Context, error: CommandError) -> None:
+        message = err.unknown
+        if isinstance(error, command_errors.MissingRequiredArgument):
+            message = err.math_blank
+
+        await __send_message(ctx, message, delete_after=5)
+        await ctx.message.delete(delay=5)
+
+
+async def __send_message(ctx: Context, message: str, limit: int = 2000, delete_after: float = None) -> None:
+    """
+    Sends a long message
+
+    If the message is longer than a certain limit, it will be sent in chunks
+
+    :param ctx: The context
+    :param message: The message to send
+    :param limit: The limit of each
+    :param delete_after: The time (in seconds) after which to delete the message
+    """
+    i = len(message)
+    while i > 0:
+        if i > limit:
+            await ctx.send(f'{message[:limit]}', delete_after=delete_after)
+            message = message[limit:]
+            i -= limit
+        else:
+            await ctx.channel.send(f'{message[:i]}', delete_after=delete_after)
+            i = 0
