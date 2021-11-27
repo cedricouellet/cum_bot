@@ -56,8 +56,7 @@ class CumBot(Bot):
         """
         channel = self.get_home_channel()
 
-        guilds = await self.fetch_guilds(limit=100)
-        for guild in guilds:
+        for guild in self.fetch_guilds(limit=100):
             print(guild.owner.id)
 
         if is_error:
