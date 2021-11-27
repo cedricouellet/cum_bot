@@ -145,3 +145,4 @@ async def __send_message(ctx: Context, message: str, limit: int = 2000, delete_a
             i -= limit
         else:
             await ctx.channel.send(f'{message[:i]}', delete_after=delete_after)
+            i = 0
