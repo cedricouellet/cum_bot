@@ -22,13 +22,9 @@ class CumBot(Bot):
         :param bot_home_channel: The home channel of the bot.
         """
         super().__init__(command_prefix='!')
-        self.discord_token = None
+        self.discord_token: str
         self.dev = is_dev
         self.bot_home_channel = bot_home_channel
-
-        self.boot_msg = f"<@{self.user.id}> Status Update: **booting**"
-        self.crash_msg = f"<@{self.user.id}> Status Update: **crashing**"
-        self.shutdown_msg = f"<@{self.user.id}> Status Update: **shutting down**"
 
         for on_command in command_listeners:
             on_command(self)
@@ -37,11 +33,12 @@ class CumBot(Bot):
         """
         Once the bot is online.
         """
-        print(self.boot_msg)
+        message = "<@{self.user.id}> Status Update: **booting**"
+        print(message)
 
         if self.dev is True:
             channel = self.get_home_channel()
-            await channel.send(self.boot_msg)
+            await channel.send(message)
 
     async def run(self, discord_token: str) -> None:
         """
@@ -60,9 +57,9 @@ class CumBot(Bot):
         channel = self.get_home_channel()
 
         if is_error:
-            msg = self.crash_msg
+            msg = f"<@{self.user.id}> Status Update: **crashing**"
         else:
-            msg = self.shutdown_msg
+            msg = f"<@{self.user.id}> Status Update: **shutting down**"
 
         print(msg)
 
