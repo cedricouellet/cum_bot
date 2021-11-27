@@ -17,34 +17,33 @@ class DiscordBot(Bot):
     """
     CumBot 0.1.0
     """
-    def __init__(self, dev: bool, giphy_api_key: str):
+    def __init__(self, is_dev: bool):
         """
         Constructor
 
-        Parameters:
-
-        - `{bool} dev` - Whether or not this is being called from a development environment.
-
-        If so, the bot will be quiet when logging in and out.
+        :param is_dev: Whether or not this is being called from a development environment.
+                    If so, the bot will be quiet when logging in and out.
         """
-        super().__init__(command_prefix='/')
+        super().__init__(command_prefix='!')
         self.discord_token = None
-        self.giphy_api_key = giphy_api_key
-        self.dev = dev
+        self.dev = is_dev
 
-        commands.add_code_command(self)
-        commands.add_jew_command(self)
-        commands.add_jizz_command(self)
-        commands.add_joke_command(self)
-        commands.add_math_command(self)
-        commands.add_loser_command(self)
-        commands.add_fuckyou_command(self)
-        commands.add_sale_command(self)
-        commands.add_crackhead_command(self)
-        commands.add_oleg_command(self)
-        commands.add_gif_command(self, self.giphy_api_key)
+        listeners = []
+        listeners += 'e'
 
-    # discord method
+        print(listeners)
+
+        commands.on_command_jew(self)
+        commands.on_command_jizz(self)
+        commands.on_command_joke(self)
+        commands.on_command_math(self)
+        commands.on_command_loser(self)
+        commands.on_command_fuckyou(self)
+        commands.on_command_sale(self)
+        commands.on_command_crackhead(self)
+        commands.on_command_oleg(self)
+        commands.on_command_gif(self)
+
     async def on_ready(self):
         """
         Once the bot is online.
@@ -60,25 +59,19 @@ class DiscordBot(Bot):
         """
         Run the bot
 
-        Parameters:
-
-        - `{str} discord_token` - The token to use to login to Discord
+        :param discord_token: The token to use to login to Discord
         """
-        self.discord_token = discord_token
-
         await self.start(discord_token)
 
-    async def stop(self, error: bool = False) -> None:
+    async def stop(self, is_error: bool = False) -> None:
         """
         Shutdown the bot
 
-        Parameters:
-
-        - `{bool} error` - Whether or not the bot is shutting down due to an error
+        :param is_error: Whether or not the bot is shutting down due to an error
         """
         channel = self.get_channel(int(GENERAL_CHANNEL))
 
-        if error:
+        if is_error:
             msg = f"*I crashed cause {AUTHOR_TAG} can't code for shit...*"
         else:
             msg = f"*Shutting down cause {AUTHOR_TAG} is gay...*"
@@ -88,15 +81,12 @@ class DiscordBot(Bot):
 
         await self.close()
 
-    # discord method
     @staticmethod
     async def on_member_join(member: discord.Member):
         """
         When a member joins
 
-        Parameters:
-
-        - `{discord.Member} member` - The member that joined
+        :param member: The member that joined
         """
         await member.create_dm()
         await member.dm_channel.send(f'{member.name}, you\'re my slave now.')
