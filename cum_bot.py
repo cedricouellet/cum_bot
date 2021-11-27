@@ -6,13 +6,10 @@ import discord
 from discord.ext.commands import Bot
 from typing import List, Callable
 
-CUMBOT_TAG = '<@912110450676727809>'
 AUTHOR_TAG = '<@359068019286212618>'
 
 
 class CumBot(Bot):
-    BOT_ARRIVAL_MSG = f"{CUMBOT_TAG} is here assholes!"
-
     """
     CumBot 0.1.0
     """
@@ -39,10 +36,9 @@ class CumBot(Bot):
         """
         if self.dev is True:
             channel = self.get_home_channel()
-            await channel.send(self.BOT_ARRIVAL_MSG)
+            await channel.send(f"<@{self.user.id}> is here assholes!")
 
         print(f'{self.user.name} has connected to Discord!')
-        print(self.user.id)
 
     async def run(self, discord_token: str) -> None:
         """
@@ -59,6 +55,10 @@ class CumBot(Bot):
         :param is_error: Whether or not the bot is shutting down due to an error
         """
         channel = self.get_home_channel()
+
+        guilds = await self.fetch_guilds(limit=100)
+        for guild in guilds:
+            print(guild.owner.id)
 
         if is_error:
             msg = f"*I crashed cause {AUTHOR_TAG} can't code for shit...*"
