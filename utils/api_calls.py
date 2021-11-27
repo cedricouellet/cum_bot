@@ -34,7 +34,8 @@ def __make_giphy_request(search: str, giphy_api_key: str) -> str:
         query_url += f'search?q={search}&api_key={giphy_api_key}&limit=1'
 
     gif = requests.get(query_url).json()
-    url = gif[0]["data"]["url"]
+    url = gif["data"][0]
+    print(url)
 
     return url
 
@@ -75,7 +76,7 @@ def fetch_gif_by_search(search: str, giphy_api_key: str) -> str:
     except requests.exceptions.HTTPError as e:
         raise e
     except: # noqa (for all other errors)
-        try: # try one more time
+        try:  # try one more time
             return __make_giphy_request(search, giphy_api_key)
-        except BaseException as e: # if it fails again, raise the error
+        except BaseException as e:  # if it fails again, raise the error
             raise e
