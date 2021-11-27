@@ -60,7 +60,7 @@ class CumBot(Bot):
         if is_error:
             msg += "**crashing**"
         else:
-            msg = "**shutting down**"
+            msg += "**shutting down**"
 
         print(msg)
 
