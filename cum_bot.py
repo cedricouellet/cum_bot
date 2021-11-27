@@ -6,13 +6,12 @@ import discord
 from discord.ext.commands import Bot
 from typing import List, Callable
 
-AUTHOR_TAG = '<@359068019286212618>'
-
 
 class CumBot(Bot):
     """
     CumBot 0.1.0
     """
+
     def __init__(self, is_dev: bool, command_listeners: List[Callable[[Bot], None]], bot_home_channel: str):
         """
         Initialize an instance of the CumBot
@@ -27,6 +26,10 @@ class CumBot(Bot):
         self.dev = is_dev
         self.bot_home_channel = bot_home_channel
 
+        self.boot_msg = f"<@{self.user.id}> Status Update: **booting**"
+        self.crash_msg = f"<@{self.user.id}> Status Update: **crashing**"
+        self.shutdown_msg = f"<@{self.user.id}> Status Update: **shutting down**"
+
         for on_command in command_listeners:
             on_command(self)
 
@@ -34,11 +37,11 @@ class CumBot(Bot):
         """
         Once the bot is online.
         """
+        print(self.boot_msg)
+
         if self.dev is True:
             channel = self.get_home_channel()
-            await channel.send(f"<@{self.user.id}> is here assholes!")
-
-        print(f'{self.user.name} has connected to Discord!')
+            await channel.send(self.boot_msg)
 
     async def run(self, discord_token: str) -> None:
         """
@@ -56,14 +59,12 @@ class CumBot(Bot):
         """
         channel = self.get_home_channel()
 
-        guilds = await self.fetch_guilds(limit=100).flatten()
-        for guild in guilds:
-            print(guild.owner)
-
         if is_error:
-            msg = f"*I crashed cause {AUTHOR_TAG} can't code for shit...*"
+            msg = self.crash_msg
         else:
-            msg = f"*Shutting down cause {AUTHOR_TAG} is gay...*"
+            msg = self.shutdown_msg
+
+        print(msg)
 
         if self.dev is False:
             await channel.send(msg)
@@ -78,7 +79,7 @@ class CumBot(Bot):
         :param member: The member that joined
         """
         await member.create_dm()
-        await member.dm_channel.send(f'{member.name}, you\'re my slave now.')
+        await member.dm_channel.send(f'{member.name}, kindly proceed to erase yourself from this world.')
 
     def get_home_channel(self) -> any:
         """
