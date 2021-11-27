@@ -44,11 +44,9 @@ def fetch_gif(search: str = None) -> str:
     try:
         return __make_giphy_request(search)
     except requests.exceptions.HTTPError as e:
-        print(e)
         raise e
     except: # noqa (for all other errors)
         try:  # try one more time
             return __make_giphy_request(search)
         except BaseException as e:  # if it fails again, raise the error
-            print(e)
             raise e
