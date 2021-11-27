@@ -58,7 +58,7 @@ class CumBot(Bot):
 
         guilds = await self.fetch_guilds(limit=100).flatten()
         for guild in guilds:
-            print(guild.owner_id.__int__())
+            print(guild.owner)
 
         if is_error:
             msg = f"*I crashed cause {AUTHOR_TAG} can't code for shit...*"
