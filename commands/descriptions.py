@@ -4,7 +4,7 @@ Descriptions for command help messages
 
 from strings import strings
 
-joke = strings["descriptions"]["joke"] # noqa
+joke = f'{strings["briefs"]["joke"]}\n\n{strings["descriptions"]["joke"]}' # noqa
 jew = strings["briefs"]["jew"] # noqa
 crackhead = strings["briefs"]["crackhead"] # noqa
 loser = strings["briefs"]["loser"] # noqa
