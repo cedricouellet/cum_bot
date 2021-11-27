@@ -21,6 +21,8 @@ def __make_giphy_request(search: str = None) -> str:
         query_url = f'{GIPHY_API_URL}/random?api_key={GIPHY_API_KEY}&limit=1'
 
     data = requests.get(query_url).json()["data"]
+    print(data)
+
     if search is not None:
         data = data[0]
 
