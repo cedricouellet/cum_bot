@@ -36,7 +36,7 @@ class CumBot(Bot):
         message = f"<@{self.user.id}> Status: **booting**"
         print(message)
 
-        if self.dev is True:
+        if self.dev is False:
             channel = self.get_home_channel()
             await channel.send(message)
 
