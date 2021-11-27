@@ -1,5 +1,5 @@
 """
-Command-related functions for the bot
+Listeners for commands
 """
 
 from discord.ext.commands import Context, Bot, CommandError

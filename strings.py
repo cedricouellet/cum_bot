@@ -1,3 +1,7 @@
+"""
+Contains a key-value object containing the bot's replies to commands depending on the context.
+"""
+
 strings = {
     "errors_math": {
         "overflow": "Jesus christ man, do you think I'm a calculator?",
@@ -47,5 +51,5 @@ strings = {
     }
 }
 """
-The dictionnary containing most bot replies
+A key-value object containing the bot's replies to commands depending on the context.
 """

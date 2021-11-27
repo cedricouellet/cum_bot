@@ -5,13 +5,19 @@ Joke API Requests
 from typing import Tuple
 import requests
 
-from utils.JokeCategory import JokeCategory
+from utils.joke_category import JokeCategory
 
 
 JOKE_API_URL = 'https://v2.jokeapi.dev/joke'
 
 
 def __make_joke_request(category: JokeCategory) -> Tuple[str, str, str]:
+    """
+    Makes an HTTP GET request to the Joke API.
+
+    :param category: The category of the joke
+    :return: The joke according to the category, or a joke of any category
+    """
     joke = requests.get(f'{JOKE_API_URL}/{category.value}').json()
     return joke["setup"], joke["delivery"], joke["category"]
 

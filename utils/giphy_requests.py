@@ -10,6 +10,12 @@ GIPHY_API_URL = 'https://api.giphy.com/v1/gifs'
 
 
 def __make_giphy_request(search: str = None) -> str:
+    """
+    Makes an HTTP GET request to the giphy API.
+
+    :param search: The search query
+    :return: A gif according to the search, or a random gif
+    """
     query_url = f'{GIPHY_API_URL}/search?q={search}&api_key={GIPHY_API_KEY}&limit=1'
     if search is None:
         query_url = f'{GIPHY_API_URL}/random?api_key={GIPHY_API_KEY}&limit=1'

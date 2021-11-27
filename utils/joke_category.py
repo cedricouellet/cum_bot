@@ -1,3 +1,7 @@
+"""
+Contains the JokeCategory enum
+"""
+
 from enum import Enum
 
 
