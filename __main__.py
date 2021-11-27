@@ -18,8 +18,7 @@ from cum_bot import CumBot
 load_dotenv()
 ENVIRONMENT = os.getenv('ENVIRONMENT')
 DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
-IS_PROD = ENVIRONMENT.lower().startswith('prod')
-
+HOME_CHANNEL = os.getenv('HOME_CHANNEL')
 
 listeners = [
     # Tag commands
@@ -38,7 +37,10 @@ listeners = [
     c.on_command_oleg,
     c.on_command_fuckyou,
 ]
-bot = CumBot(is_dev=not IS_PROD, command_listeners=listeners, bot_home_channel="dev")
+
+is_dev = not ENVIRONMENT.lower().startswith('prod')
+
+bot = CumBot(is_dev=is_dev, command_listeners=listeners, bot_home_channel=HOME_CHANNEL)
 
 
 async def __up() -> None:
