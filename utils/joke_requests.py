@@ -4,7 +4,8 @@ Joke API Requests
 
 from typing import Tuple
 import requests
-from JokeCategory import JokeCategory
+
+from utils.JokeCategory import JokeCategory
 
 
 JOKE_API_URL = 'https://v2.jokeapi.dev/joke'
