@@ -33,7 +33,7 @@ class CumBot(Bot):
         """
         Once the bot is online.
         """
-        message = f"<@{self.user.id}> Status Update: **booting**"
+        message = f"<@{self.user.id}> Status: **booting**"
         print(message)
 
         if self.dev is True:
@@ -56,10 +56,11 @@ class CumBot(Bot):
         """
         channel = self.get_home_channel()
 
+        msg = f"<@{self.user.id}> Status: "
         if is_error:
-            msg = f"<@{self.user.id}> Status Update: **crashing**"
+            msg += "**crashing**"
         else:
-            msg = f"<@{self.user.id}> Status Update: **shutting down**"
+            msg = "**shutting down**"
 
         print(msg)
 
