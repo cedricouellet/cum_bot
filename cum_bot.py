@@ -9,7 +9,7 @@ from typing import List, Callable
 
 class CumBot(Bot):
     """
-    CumBot 0.1.0
+    CumBot 0.2.0
     """
 
     def __init__(self, is_dev: bool, command_listeners: List[Callable[[Bot], None]], bot_home_channel: str):

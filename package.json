@@ -4,5 +4,5 @@
   "description": "A custom Discord bot for highschool friends",
   "main": "bot.js",
   "author": "Cedric-A. Ouellet",
-  "license": "ISC"
+  "license": "MIT"
 }
