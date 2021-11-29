@@ -23,7 +23,7 @@ def __make_weather_request(city: str) -> Tuple[str, str, str, str, str]:
     response = requests.get(f'{OPENWEATHER_API_URL}/weather?q={city}&appid={OPENWEATHER_API_KEY}').json()
 
     main = response["main"]
-    weather = response["weather"]
+    weather = response["weather"][0]
 
     conditions = weather["description"]
     temp = main["temp"]
