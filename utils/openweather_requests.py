@@ -10,7 +10,7 @@ import requests
 load_dotenv()
 OPENWEATHER_API_KEY = os.getenv('OPENWEATHER_API_KEY')
 
-OPENWEATHER_API_URL = 'api.openweathermap.org/data/2.5/'
+OPENWEATHER_API_URL = 'https://api.openweathermap.org/data/2.5/'
 
 
 def __make_weather_request(city: str) -> Tuple[str, str, str, str, str]:
