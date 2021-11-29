@@ -20,7 +20,7 @@ def __make_weather_request(city: str) -> Tuple[str, str, str, str, str]:
     :param city: The city for which to get the weather
     :return: The weather for a city
     """
-    response = requests.get(f'{OPENWEATHER_API_URL}/weather?q={city}&appid={OPENWEATHER_API_KEY}').json()
+    response = requests.get(f'{OPENWEATHER_API_URL}/weather?q={city}&units=metric&appid={OPENWEATHER_API_KEY}').json()
 
     main = response["main"]
     weather = response["weather"][0]
