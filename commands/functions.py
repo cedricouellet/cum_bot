@@ -43,8 +43,11 @@ def joke(category: str) -> str:
         if category is not None:
             for cat in JokeCategory:
                 print('CHECKING')
+
+                print('BEFORE IF ', cat.value.lower(), category.lower())
+
                 if cat.value.lower() == category.lower():
-                    print('FOUND', cat)
+                    print('FOUND', cat.value.lower(), category.lower())
                     enum_category = cat
                     break
 
