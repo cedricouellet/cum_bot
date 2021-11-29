@@ -117,6 +117,23 @@ def on_command_joke(bot: Bot) -> None:
         await __send_message(ctx, fn.joke(category))
 
 
+def on_command_weather(bot: Bot) -> None:
+    """
+    The command listener for the weather command.
+
+    :param bot: The bot on which to apply the listener
+    """
+    @bot.command(name="weather", brief=briefs.weather, description=desc.weather)
+    async def weather_command(ctx: Context, city: str = None) -> None:
+        author = ctx.message.author
+        write_log(f'(command) city: arg={city}, name={author.name}, id={author.id}')
+        await __send_message(ctx, fn.weather(city))
+
+    @weather_command.error
+    async def weather_error(ctx: Context, error: CommandError) -> None:
+        await __on_error(ctx, error, 'math', err.weather_blank)
+
+
 def on_command_gif(bot: Bot) -> None:
     @bot.command(name="gif", brief=briefs.gif, description=desc.gif)
     async def gif_command(ctx: Context, *, search: str = None) -> None:
@@ -139,14 +156,7 @@ def on_command_math(bot: Bot) -> None:
 
     @math_command.error
     async def math_error(ctx: Context, error: CommandError) -> None:
-        message = err.unknown
-        if isinstance(error, command_errors.MissingRequiredArgument):
-            author = ctx.message.author
-            write_log(f'(error) math: error=missing argument, name={author.name}, id={author.id}')
-            message = err.math_blank
-
-        await __send_message(ctx, message, delete_after=5)
-        await ctx.message.delete(delay=5)
+        await __on_error(ctx, error, 'math', err.math_blank)
 
 
 async def __send_message(ctx: Context, message: str, limit: int = 2000, delete_after: float = None) -> None:
@@ -169,3 +179,14 @@ async def __send_message(ctx: Context, message: str, limit: int = 2000, delete_a
         else:
             await ctx.channel.send(f'{message[:i]}', delete_after=delete_after)
             i = 0
+
+
+async def __on_error(ctx: Context, error: CommandError, command_name: str, blank_errmsg: str) -> None:
+    message = err.unknown
+    if isinstance(error, command_errors.MissingRequiredArgument):
+        author = ctx.message.author
+        write_log(f'(error) weather: {command_name}=missing argument, name={author.name}, id={author.id}')
+        message = blank_errmsg
+
+    await __send_message(ctx, message, delete_after=5)
+    await ctx.message.delete(delay=5)

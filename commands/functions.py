@@ -54,6 +54,22 @@ def joke(category: str) -> str:
         return strings['errors_joke']['invalid']
 
 
+def weather(city: str) -> str:
+    """
+    Weather function
+
+    :param city: The city for which to get the weather
+    :return: A response
+    """
+    try:
+        if city is not None:
+            city, temp, conditions, min_temp, max_temp = fetch_weather(city)
+    except HTTPError:
+        return strings['errors_weather']['http_error']
+    except: # noqa (we want to handle all errors)
+        return strings['errors_weather']['invalid']
+
+
 def gif(search: str = None) -> str:
     """
     Gif function.
