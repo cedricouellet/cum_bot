@@ -10,7 +10,7 @@ from logs.loggers import write_log
 
 class CumBot(Bot):
     """
-    CumBot 0.4.0
+    CumBot 0.4.1
     """
 
     def __init__(self, is_dev: bool, command_listeners: List[Callable[[Bot], None]], bot_home_channel: str):

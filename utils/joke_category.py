@@ -11,7 +11,7 @@ class JokeCategory(Enum):
     """
     ANY = "any"
     DARK = "dark"
-    PROGRAMMER = "programmer"
+    PROGRAMMING = "programming"
     MISC = "misc"
     PUN = "pun"
     SPOOKY = "spooky"
