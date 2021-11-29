@@ -135,7 +135,7 @@ def on_command_math(bot: Bot) -> None:
     async def math_command(ctx: Context, *, expression: str) -> None:
         author = ctx.message.author
         write_log(f'(command) math: arg={expression}, name={author.name}, id={author.id}')
-        await __send_message(ctx, fn.math(expression))
+        await __send_message(ctx, str(fn.math(expression)))
 
     @math_command.error
     async def math_error(ctx: Context, error: CommandError) -> None:
@@ -148,7 +148,7 @@ def on_command_math(bot: Bot) -> None:
             write_log(f'(error) math: error=missing argument, name={author.name}, id={author.id}')
             message = err.math_blank
 
-        await __send_message(ctx, str(message), delete_after=5)
+        await __send_message(ctx, message, delete_after=5)
         await ctx.message.delete(delay=5)
 
 
