@@ -65,6 +65,12 @@ def weather(city: str) -> str:
     try:
         if city is not None:
             city, conditions, temp, min_temp, max_temp = fetch_weather(city)
+            message = f"Weather: **{city}**\n\nConditions: {conditions}\n" + \
+                      f"Current Temp: {temp}°C\n" + f"Min Temp: {min_temp}°C\n" + \
+                      f"Max Temp: {max_temp}°C"
+
+            return message
+        return strings['errors_weather']['blank']
     except HTTPError:
         return strings['errors_weather']['http_error']
     except: # noqa (we want to handle all errors)

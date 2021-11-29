@@ -50,5 +50,4 @@ def fetch_weather(city: str) -> Tuple[str, str, str, str, str]:
         try:  # try one more time
             return __make_weather_request(city)
         except BaseException as e:  # if it fails again, raise the error
-            print(e)
             raise e
