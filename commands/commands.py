@@ -124,7 +124,7 @@ def on_command_weather(bot: Bot) -> None:
     :param bot: The bot on which to apply the listener
     """
     @bot.command(name="weather", brief=briefs.weather, description=desc.weather)
-    async def weather_command(ctx: Context, city: str = None) -> None:
+    async def weather_command(ctx: Context, *, city: str = None) -> None:
         author = ctx.message.author
         write_log(f'(command) city: arg={city}, name={author.name}, id={author.id}')
         await __send_message(ctx, fn.weather(city))
