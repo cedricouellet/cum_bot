@@ -25,10 +25,10 @@ def __make_weather_request(city: str) -> Tuple[str, str, str, str, str]:
     main = response["main"]
     weather = response["weather"]
 
-    conditions = str(weather["description"])
-    temp = str(main["temp"])
-    temp_min = str(main["temp_min"])
-    temp_max = str(main["temp_max"])
+    conditions = weather["description"]
+    temp = main["temp"]
+    temp_min = main["temp_min"]
+    temp_max = main["temp_max"]
 
     return city, conditions, temp, temp_min, temp_max
 
