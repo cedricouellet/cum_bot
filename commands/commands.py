@@ -132,7 +132,7 @@ def on_command_math(bot: Bot) -> None:
     :param bot: The bot on which to apply the listener
     """
     @bot.command(name="math", brief=briefs.math, description=desc.math)
-    async def math_command(ctx: Context, expression: str) -> None:
+    async def math_command(ctx: Context, *, expression: str) -> None:
         author = ctx.message.author
         write_log(f'(command) math: arg={expression}, name={author.name}, id={author.id}')
         await __send_message(ctx, fn.math(expression))
