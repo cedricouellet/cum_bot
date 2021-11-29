@@ -140,7 +140,9 @@ def on_command_math(bot: Bot) -> None:
     @math_command.error
     async def math_error(ctx: Context, error: CommandError) -> None:
         message = err.unknown
+        print('matherror')
         if isinstance(error, command_errors.MissingRequiredArgument):
+            print('missingargument')
             author = ctx.message.author
             write_log(f'(error) math: error=missing argument, name={author.name}, id={author.id}')
             message = err.math_blank
