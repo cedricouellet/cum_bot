@@ -65,7 +65,7 @@ def weather(city: str) -> str:
     try:
         if city is not None:
             city, conditions, temp, min_temp, max_temp = fetch_weather(city)
-            message = f"**Weather:** {city}\n\n**Conditions:** {conditions}\n" + \
+            message = f"**City:** {city}\n**Conditions:** {conditions}\n" + \
                       f"**Current Temp:** {temp}°C\n" + f"**Min Temp:** {min_temp}°C\n" + \
                       f"**Max Temp:** {max_temp}°C"
 
