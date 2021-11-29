@@ -21,6 +21,8 @@ def math(expression: str) -> Union[int, any]:
     """
     try:
         return calculate_expression(expression)
+    except BaseException as e:
+        print(e)
     except OverflowError:
         return strings['errors_math']['overflow']
     except SyntaxError:
