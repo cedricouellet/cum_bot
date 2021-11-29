@@ -141,6 +141,7 @@ def on_command_math(bot: Bot) -> None:
     async def math_error(ctx: Context, error: CommandError) -> None:
         message = err.unknown
         print('matherror')
+        print(error)
         if isinstance(error, command_errors.MissingRequiredArgument):
             print('missingargument')
             author = ctx.message.author
