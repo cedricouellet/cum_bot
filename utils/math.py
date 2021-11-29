@@ -16,5 +16,4 @@ def calculate_expression(expression: str) -> int:
     try:
         return numexpr.evaluate(expression)
     except BaseException as e:
-        print(e)
         raise e
