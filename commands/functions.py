@@ -42,10 +42,13 @@ def joke(category: str) -> str:
 
         if category is not None:
             for cat in JokeCategory:
+                print('CHECKING')
                 if cat.value.lower() == category.lower():
+                    print('FOUND', cat)
                     enum_category = cat
                     break
 
+        print(enum_category)
         content = fetch_joke(enum_category)
         setup, delivery, category = content
         return strings['replies']['joke'] + f'Category: {category.upper()}\n\n**{setup}**\n*{delivery}*'
