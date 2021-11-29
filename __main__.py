@@ -30,6 +30,7 @@ listeners = [
     c.on_command_joke,
     c.on_command_gif,
     c.on_command_math,
+    c.on_command_weather,
 
     # Simple commands
     c.on_command_jizz,

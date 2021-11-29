@@ -6,6 +6,7 @@ from strings import strings
 
 joke = f'{strings["briefs"]["joke"]}\n\n{strings["descriptions"]["joke"]}' # noqa
 jew = strings["briefs"]["jew"] # noqa
+weather = strings["briefs"]["weather"] # noqa
 crackhead = strings["briefs"]["crackhead"] # noqa
 loser = strings["briefs"]["loser"] # noqa
 oleg = strings["briefs"]["oleg"] # noqa

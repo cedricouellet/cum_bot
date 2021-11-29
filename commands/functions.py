@@ -10,6 +10,7 @@ from utils.joke_category import JokeCategory
 from utils.math import calculate_expression
 from utils.joke_requests import fetch_joke
 from utils.giphy_requests import fetch_gif
+from utils.openweather_requests import fetch_weather
 
 
 def math(expression: str) -> Union[int, any]:
@@ -52,6 +53,28 @@ def joke(category: str) -> str:
         return strings['errors_joke']['http_error']
     except: # noqa (we want to handle all errors)
         return strings['errors_joke']['invalid']
+
+
+def weather(city: str) -> str:
+    """
+    Weather function
+
+    :param city: The city for which to get the weather
+    :return: A response
+    """
+    try:
+        if city is not None:
+            city, conditions, temp, min_temp, max_temp = fetch_weather(city)
+            message = f"**City:** {city}\n**Conditions:** {conditions}\n" + \
+                      f"**Current Temp:** {temp}°C\n" + f"**Min Temp:** {min_temp}°C\n" + \
+                      f"**Max Temp:** {max_temp}°C"
+
+            return message
+        return strings['errors_weather']['blank']
+    except HTTPError:
+        return strings['errors_weather']['http_error']
+    except: # noqa (we want to handle all errors)
+        return strings['errors_weather']['invalid']
 
 
 def gif(search: str = None) -> str:

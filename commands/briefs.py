@@ -5,6 +5,7 @@ Briefs for command help messages
 from strings import strings
 
 jew = strings["briefs"]["jew"] # noqa
+weather = strings["briefs"]["weather"] # noqa
 crackhead = strings["briefs"]["crackhead"] # noqa
 loser = strings["briefs"]["loser"] # noqa
 oleg = strings["briefs"]["oleg"] # noqa

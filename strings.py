@@ -17,6 +17,11 @@ strings = {
         "http_error": "Fuck my internet's down.\n\nTry again later.",
         "unexpected": "Could't fetch a GIF for that.\n\nTry again with a different search."
     },
+    "errors_weather": {
+        "http_error": "Fuck my internet's down.\n\nTry again later.",
+        "invalid": "That's not a valid city, you dumb fuck.\n\nTry something else.",
+        "blank": "Don't waste my time asshole, you've gotta give me a city.\n\nTry `!weather Toronto`, retard"
+    },
     "error_unknown": "Can't do that... Something went wrong",
     "replies": {
         "joke": "Here's your shitty joke, asshole:\n\n",
@@ -42,7 +47,8 @@ strings = {
         "loser": "Summon Cedric.",
         "math": "Calculate a math expression.",
         "joke": "Tells a joke based on a category. By default, category is Any.",
-        "gif": "Searches a GIF by its name or gets a trending gif."
+        "gif": "Searches a GIF by its name or gets a trending gif.",
+        "weather": "Gets the weather for a specific city."
     },
     "descriptions": {
         "joke": "Valid categories are: Any, Misc, Programming, Dark, Pun, Spooky, Christmas.",
