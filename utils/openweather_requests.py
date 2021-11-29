@@ -3,10 +3,14 @@ OpenWeather API Requests
 """
 
 from typing import Tuple
+from dotenv import load_dotenv
+import os
 import requests
 
+load_dotenv()
+OPENWEATHER_API_KEY = os.getenv('OPENWEATHER_API_KEY')
 
-OPENWEATHER_API_URL = 'https://api.openweather'
+OPENWEATHER_API_URL = 'api.openweathermap.org/data/2.5/'
 
 
 def __make_weather_request(city: str) -> Tuple[str, str, str, str, str]:
@@ -16,12 +20,15 @@ def __make_weather_request(city: str) -> Tuple[str, str, str, str, str]:
     :param city: The city for which to get the weather
     :return: The weather for a city
     """
-    # TODO
-    response = requests.get(f'{OPENWEATHER_API_URL}/{city}').json()
-    conditions: str = ""
-    temp: str = ""
-    temp_min: str = ""
-    temp_max: str = ""
+    response = requests.get(f'{OPENWEATHER_API_URL}/weather?q={city}&appid={OPENWEATHER_API_KEY}').json()
+
+    main = response["main"]
+    weather = response["weather"]
+
+    conditions = str(weather["description"])
+    temp = str(main["temp"])
+    temp_min = str(main["temp_min"])
+    temp_max = str(main["temp_max"])
 
     return city, conditions, temp, temp_min, temp_max
 

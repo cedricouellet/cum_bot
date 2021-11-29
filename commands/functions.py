@@ -10,6 +10,7 @@ from utils.joke_category import JokeCategory
 from utils.math import calculate_expression
 from utils.joke_requests import fetch_joke
 from utils.giphy_requests import fetch_gif
+from utils.openweather_requests import fetch_weather
 
 
 def math(expression: str) -> Union[int, any]:
@@ -63,7 +64,7 @@ def weather(city: str) -> str:
     """
     try:
         if city is not None:
-            city, temp, conditions, min_temp, max_temp = fetch_weather(city)
+            city, conditions, temp, min_temp, max_temp = fetch_weather(city)
     except HTTPError:
         return strings['errors_weather']['http_error']
     except: # noqa (we want to handle all errors)
