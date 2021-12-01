@@ -33,7 +33,9 @@ def on_command_diary(bot: Bot) -> None:
             delete_after = None
 
         await __send_message(ctx, result, delete_after=delete_after)
-        await ctx.message.delete(delay=delete_after)
+
+        if delete:
+            await ctx.message.delete(delay=0)
 
 
 def on_command_future(bot: Bot) -> None:
