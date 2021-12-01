@@ -29,6 +29,10 @@ strings = {
         "jizz": "shoombool culo",
         "sale": "Sale nègre",
         "fuckyou": "I will decimate your existence",
+        "coinflip": {
+            "heads": "Heads",
+            "tails": "Tails"
+        }
     },
     "tags": {
         "cedric": "<@359068019286212618>",
@@ -48,10 +52,12 @@ strings = {
         "math": "Calculate a math expression.",
         "joke": "Tells a joke based on a category. By default, category is Any.",
         "gif": "Searches a GIF by its name or gets a trending gif.",
-        "weather": "Gets the weather for a specific city."
+        "weather": "Gets the weather for a specific city.",
+        "coinflip": "Flips a coin."
     },
     "descriptions": {
         "joke": "Valid categories are: Any, Misc, Programming, Dark, Pun, Spooky, Christmas.",
+        "coinflip": "Flips a coin.\n\nReplies with either 'Heads' or 'Tails'."
     }
 }
 """
