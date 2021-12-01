@@ -78,6 +78,28 @@ def weather(city: str) -> str:
         return strings['errors_weather']['invalid']
 
 
+def diary(entry: str = None, author: str = None) -> str:  # noqa
+    """
+    Diary function.
+
+    :param entry: The entry to add to the diary, if provided
+    :param author: The author of the entry, if the entry is provided
+    :return: A response
+    """
+    # TODO
+    return "Not Implemented"
+
+
+def future() -> str:
+    """
+    Future function.
+
+    :return: A response
+    """
+    future_choices = strings["replies"]["future"]
+    return random.choice(future_choices)
+
+
 def gif(search: str = None) -> str:
     """
     Gif function.

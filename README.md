@@ -1,32 +1,20 @@
-# CumBot v0.4.1
+# CumBot v0.5.1
 
 A Discord Bot for my highschool friends (using [discord.py](https://pypi.org/project/discord.py/)).
 
 Written in [Python 3](https://www.python.org/downloads/).
 
 ## Sections
-- [Available commands](#available-commands)
+- [Help commands](#help-commands)
 - [Getting started](#getting-started)
 - [Virtual environment](#virtual-environment)
 
 ---
 
-## Available Commands:
+## Help Commands:
 
 - To get help: `!help`.
 - To learn more about a command: `!help <command_name>`.
-
-| Command      | Argument(s)                                                            | Definition                                              |
-|--------------|------------------------------------------------------------------------|---------------------------------------------------------|
-| `!joke`      | *None* OR `any`,`misc`,`programming`,`dark`,`pun`,`spooky`,`christmas` | Tells a joke depending on the category or a random one. |                                       
-| `!math`      | Mathematical expression. Eg: `1+1`                                     | Calculate a mathematical expression.                    |
-| `!jew`       | *None*                                                                 | Summon Eli.                                             |
-| `!crackhead` | *None*                                                                 | Summon Felix.                                           |
-| `!loser`     | *None*                                                                 | Summon Cedric.                                          |
-| `!sale`      | *None*                                                                 | *REDACTED*                                              |
-| `!jizz`      | *None*                                                                 | *REDACTED*                                              |
-| `!fuckyou`   | *None*                                                                 | *REDACTED*                                              |
-| `!oleg`      | *None*                                                                 | *REDACTED*                                              |
 
 ## Getting Started
 1. Clone the project: https://github.com/cedricouellet/cum_bot.git

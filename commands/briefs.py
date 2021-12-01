@@ -16,3 +16,5 @@ joke = strings["briefs"]["joke"]  # noqa
 gif = strings["briefs"]["gif"]  # noqa
 math = strings["briefs"]["math"]  # noqa
 coinflip = strings["briefs"]["coinflip"]  # noqa
+future = strings["briefs"]["future"]  # noqa
+diary = strings["briefs"]["diary"]  # noqa

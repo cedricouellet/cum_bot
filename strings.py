@@ -32,7 +32,19 @@ strings = {
         "coinflip": {
             "heads": "Heads",
             "tails": "Tails"
-        }
+        },
+        "future": [
+            "You're gonna fuck up your life.",
+            "You're gonna end up being a janitor.",
+            "You're gonna be a loser.",
+            "You're gonna make an average living.",
+            "You're gonna get rich.",
+            "You're still gonna be living at your parents' house at 40.",
+            "Try your luck with Twitch, cause school's not for you, buddy.",
+            "You're gonna end up with a lamborghini.",
+            "All you're gonna be able to afford is McDonalds.",
+            "You're gonna end up a fucking peasant."
+        ]
     },
     "tags": {
         "cedric": "<@359068019286212618>",
@@ -53,11 +65,16 @@ strings = {
         "joke": "Tells a joke based on a category. By default, category is Any.",
         "gif": "Searches a GIF by its name or gets a trending gif.",
         "weather": "Gets the weather for a specific city.",
-        "coinflip": "Flips a coin."
+        "coinflip": "Flips a coin.",
+        "future": "Predicts your future.",
+        "diary": "Add an entry to the diary of get a random one."
     },
     "descriptions": {
-        "joke": "Valid categories are: Any, Misc, Programming, Dark, Pun, Spooky, Christmas.",
-        "coinflip": "Flips a coin.\n\nReplies with either 'Heads' or 'Tails'."
+        "joke": "Tells a joke based on a category. By default, category is Any.\n\n" +
+                "Valid categories are: Any, Misc, Programming, Dark, Pun, Spooky, Christmas.",
+        "coinflip": "Flips a coin.\n\nReplies with either 'Heads' or 'Tails'.",
+        "diary": "Add an entry to the diary of get a random one.\n\n" +
+                 "If no argument is provided, the reply will be a random entry.\nOtherwise, the entry will be added."
     }
 }
 """

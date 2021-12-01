@@ -13,7 +13,33 @@ from commands import \
     error_messages as err
 
 
-def on_command_jew(bot) -> None:
+def on_command_diary(bot: Bot) -> None:
+    """
+    The command listener for the diary command
+
+    :param bot: The bot on which to apply the listener
+    """
+
+    @bot.command(name="diary", briefs=briefs.diary, description=desc.diary)
+    async def diary_command(ctx: Context, *, entry: str = None) -> None:
+        __log_command(ctx, 'diary', entry)
+        await __send_message(ctx, fn.diary())
+
+
+def on_command_future(bot: Bot) -> None:
+    """
+    The command listener for the future command
+
+    :param bot: The bot on which to apply the listener
+    """
+
+    @bot.command(name="future", briefs=briefs.future, description=desc.future)
+    async def future_command(ctx: Context) -> None:
+        __log_command(ctx, 'future')
+        await __send_message(ctx, fn.future())
+
+
+def on_command_jew(bot: Bot) -> None:
     """
     The command listener for the jew command
 
