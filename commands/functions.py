@@ -79,7 +79,7 @@ def weather(city: str) -> str:
         return strings['errors_weather']['invalid']
 
 
-def diary(entry: str = None, author: str = None) -> Tuple[str, bool]:  # noqa
+def diary(entry: str = None, author: str = None) -> Tuple[str, bool]:
     """
     Diary function.
 
