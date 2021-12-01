@@ -1,4 +1,4 @@
-# CumBot v0.5.1
+# CumBot v0.5.0
 
 A Discord Bot for my highschool friends (using [discord.py](https://pypi.org/project/discord.py/)).
 
