@@ -37,6 +37,7 @@ listeners = [
     c.on_command_sale,
     c.on_command_oleg,
     c.on_command_fuckyou,
+    c.on_command_coinflip
 ]
 
 is_dev = not ENVIRONMENT.lower().startswith('prod')
