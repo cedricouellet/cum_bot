@@ -17,4 +17,6 @@ def write_log(log: str) -> None:
 
     line = f"[{curr_datetime}] {log}\n"
     with open(LOG_FILE, 'a+') as f:
-        f.write(line)
+        # only keep first 100 chars (for performance reasons)
+        # remove line endings (for better readability)
+        f.write(line.replace('\n', '')[:100])

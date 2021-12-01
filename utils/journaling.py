@@ -68,7 +68,8 @@ def add_entry(entry: str, author: str) -> bool:
     __create_file_if_not_exists()
     entries = __read_file()
 
-    new_entry = {"entry": entry, "author": author}
+    # keep 100 first chars from entry (for performance reasons)
+    new_entry = {"entry": entry[:100], "author": author}
 
     if new_entry in entries:
         return False
