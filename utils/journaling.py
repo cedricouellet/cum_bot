@@ -5,7 +5,11 @@ Journaling functions
 import random
 import os
 import json
+
+
 JOURNAL_FILE = "journal.json"
+
+MAX_ENTRY_LENGTH = 500
 
 
 def __read_file() -> list:
@@ -68,8 +72,13 @@ def add_entry(entry: str, author: str) -> bool:
     __create_file_if_not_exists()
     entries = __read_file()
 
-    # keep 100 first chars from entry (for performance reasons)
-    new_entry = {"entry": entry[:100], "author": author}
+    # limit length (for performance reasons)
+    if len(entry) > MAX_ENTRY_LENGTH:
+        entry = entry[:MAX_ENTRY_LENGTH-3]
+        # ... to show the message was trimmed
+        entry += '...'
+
+    new_entry = {"entry": entry[:500], "author": author}
 
     if new_entry in entries:
         return False
