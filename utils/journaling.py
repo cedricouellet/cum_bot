@@ -78,7 +78,7 @@ def add_entry(entry: str, author: str) -> bool:
         # ... to show the message was trimmed
         entry += '...'
 
-    new_entry = {"entry": entry[:500], "author": author}
+    new_entry = {"entry": entry, "author": author}
 
     if new_entry in entries:
         return False
