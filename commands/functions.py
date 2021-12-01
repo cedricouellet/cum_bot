@@ -3,7 +3,7 @@ Functions that are called by commands
 """
 
 import random
-from typing import Union
+from typing import Union, Tuple
 from requests.exceptions import HTTPError
 
 from strings import strings
