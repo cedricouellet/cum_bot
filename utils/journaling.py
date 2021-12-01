@@ -77,7 +77,3 @@ def add_entry(entry: str, author: str) -> bool:
     with open(JOURNAL_FILE, 'w') as f:
         json.dump(entries, f)
     return True
-
-
-add_entry("Hello World", "John Doe")
-print(read_random_entry())
