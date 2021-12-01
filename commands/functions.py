@@ -2,6 +2,7 @@
 Functions that are called by commands
 """
 
+import random
 from typing import Union
 from requests.exceptions import HTTPError
 
@@ -26,7 +27,7 @@ def math(expression: str) -> Union[int, any]:
         return strings['errors_math']['overflow']
     except SyntaxError:
         return strings['errors_math']['blank']
-    except: # noqa (all other errors should default to the same error message)
+    except:  # noqa (all other errors should default to the same error message)
         return strings['errors_math']['invalid']
 
 
@@ -51,7 +52,7 @@ def joke(category: str) -> str:
         return strings['replies']['joke'] + f'Category: {category.upper()}\n\n**{setup}**\n*{delivery}*'
     except HTTPError:
         return strings['errors_joke']['http_error']
-    except: # noqa (we want to handle all errors)
+    except:  # noqa (we want to handle all errors)
         return strings['errors_joke']['invalid']
 
 
@@ -73,7 +74,7 @@ def weather(city: str) -> str:
         return strings['errors_weather']['blank']
     except HTTPError:
         return strings['errors_weather']['http_error']
-    except: # noqa (we want to handle all errors)
+    except:  # noqa (we want to handle all errors)
         return strings['errors_weather']['invalid']
 
 
@@ -91,10 +92,23 @@ def gif(search: str = None) -> str:
     except IndexError:
         try:
             return fetch_gif()
-        except BaseException: # noqa (if no default gif could be fetched, raise it)
+        except BaseException:  # noqa (if no default gif could be fetched, raise it)
             return strings["errors_gif"]["unexpected"]
-    except BaseException: # noqa (we want to handle all other errors)
+    except BaseException:  # noqa (we want to handle all other errors)
         return strings["errors_gif"]["unexpected"]
+
+
+def coinflip() -> str:
+    """
+    Coinflip function
+
+    :return: A response
+    """
+    coinflip_dict = strings["replies"]["coinflip"]
+    heads = coinflip_dict["heads"]
+    tails = coinflip_dict["tails"]
+
+    return random.choice([heads, tails])
 
 
 def jew() -> str:
@@ -158,5 +172,3 @@ def fuckyou() -> str:
     :return: A response
     """
     return strings["replies"]["fuckyou"]
-
-
