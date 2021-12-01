@@ -6,4 +6,6 @@ A utilities module for the bot
 - joke_category: Contains the JokeCategory enum
 - openweaher_requests:OpenWeather API Requests
 - math: Math functions
+- logging: Logging functions
+- journaling: Journaling Functions
 """
