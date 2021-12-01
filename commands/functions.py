@@ -93,7 +93,7 @@ def diary(entry: str = None, author: str = None) -> Tuple[str, bool]:  # noqa
             str_entry = entry_dict["entry"]
             str_author = entry_dict["author"]
 
-            message = f"**Entry**\n---------\n\n{str_entry}\n\nby *{str_author}*"
+            message = f"**Entry**\n{str_entry}\n- by *{str_author}*"
             return message, False
 
         add_entry(entry, author)
