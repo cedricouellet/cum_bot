@@ -7,7 +7,6 @@ import requests
 
 from utils.joke_category import JokeCategory
 
-
 JOKE_API_URL = 'https://v2.jokeapi.dev/joke'
 
 
