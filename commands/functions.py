@@ -7,6 +7,7 @@ from typing import Union
 from requests.exceptions import HTTPError
 
 from strings import strings
+from utils.journaling import read_random_entry, add_entry
 from utils.joke_category import JokeCategory
 from utils.math import calculate_expression
 from utils.joke_requests import fetch_joke
@@ -78,16 +79,29 @@ def weather(city: str) -> str:
         return strings['errors_weather']['invalid']
 
 
-def diary(entry: str = None, author: str = None) -> str:  # noqa
+def diary(entry: str = None, author: str = None) -> Tuple[str, bool]:  # noqa
     """
     Diary function.
 
     :param entry: The entry to add to the diary, if provided
     :param author: The author of the entry, if the entry is provided
-    :return: A response
+    :return: A tuple containing the result and if the message should be deleted
     """
-    # TODO
-    return "Not Implemented"
+    try:
+        if entry is None or author is None:
+            entry_dict = read_random_entry()
+            str_entry = entry_dict["entry"]
+            str_author = entry_dict["author"]
+
+            message = f"**Entry**\n---------\n\n{str_entry}\n\nby *{str_author}*"
+            return message, False
+
+        add_entry(entry, author)
+        return "Done.", True
+    except IndexError:
+        return strings["errors_diary"]["empty"], False
+    except:  # noqa
+        return strings["error_unknown"], True
 
 
 def future() -> str:

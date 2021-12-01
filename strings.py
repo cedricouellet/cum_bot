@@ -22,6 +22,9 @@ strings = {
         "invalid": "That's not a valid city, you dumb fuck.\n\nTry something else.",
         "blank": "Don't waste my time asshole, you've gotta give me a city.\n\nTry `!weather Toronto`, retard"
     },
+    "errors_diary": {
+      "empty": "No entries currently exist. \n\nAdd one by doing `!diary This is my first entry.`"
+    },
     "error_unknown": "Can't do that... Something went wrong",
     "replies": {
         "joke": "Here's your shitty joke, asshole:\n\n",

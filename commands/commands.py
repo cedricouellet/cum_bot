@@ -5,7 +5,7 @@ Listeners for commands
 from discord.ext.commands import Context, Bot, CommandError
 import discord.ext.commands.errors as command_errors
 
-from logs.loggers import write_log
+from utils.logging import write_log
 from commands import \
     functions as fn, \
     briefs as briefs, \
@@ -23,7 +23,17 @@ def on_command_diary(bot: Bot) -> None:
     @bot.command(name="diary", briefs=briefs.diary, description=desc.diary)
     async def diary_command(ctx: Context, *, entry: str = None) -> None:
         __log_command(ctx, 'diary', entry)
-        await __send_message(ctx, fn.diary())
+
+        author_name = ctx.message.author.name
+        result, delete = fn.diary(entry, author_name)
+
+        if delete:
+            delete_after = 0
+        else:
+            delete_after = None
+
+        await __send_message(ctx, result, delete_after=delete_after)
+        await ctx.message.delete(delay=delete_after)
 
 
 def on_command_future(bot: Bot) -> None:

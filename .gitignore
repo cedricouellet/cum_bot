@@ -1,4 +1,4 @@
-# __pychache__
+# __pycache__
 */__pycache__
 /__pychache
 
@@ -10,6 +10,9 @@
 */venv
 /venv
 
-# other
+# bot files
 */logfile.txt
+logfile.txt
 
+*/journal.json
+journal.json

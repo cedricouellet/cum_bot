@@ -5,7 +5,7 @@ Contains the DiscordBot class
 import discord
 from discord.ext.commands import Bot
 from typing import List, Callable
-from logs.loggers import write_log
+from utils.logging import write_log
 
 
 class CumBot(Bot):
