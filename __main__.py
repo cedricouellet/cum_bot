@@ -21,6 +21,9 @@ DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
 HOME_CHANNEL = os.getenv('HOME_CHANNEL')
 
 listeners = [
+    # Admin commands
+    c.on_command_clear,
+
     # Tag commands
     c.on_command_jew,
     c.on_command_crackhead,
