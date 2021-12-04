@@ -75,7 +75,7 @@ strings = {
         "coinflip": "Flips a coin.",
         "future": "Predicts your future.",
         "diary": "Add an entry to the diary of get a random one.",
-        "clear": "Clears all messages in the channel matching a specified pattern."
+        "clear": "Clears all messages in the channel that start with a specified pattern."
     },
     "descriptions": {
         "joke": "Tells a joke based on a category. By default, category is Any.\n\n" +

@@ -191,6 +191,9 @@ def on_command_clear(bot: Bot) -> None:
             if message.content.startswith(pattern):
                 await message.delete()
 
+        __log_command(ctx, 'clear', pattern)
+        await __send_message(ctx, "All messages cleared!")
+
     @clear_command.error
     async def clear_error(ctx: Context, error: CommandError) -> None:
         message = err.unknown
