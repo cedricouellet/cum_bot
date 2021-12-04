@@ -18,3 +18,4 @@ math = strings["briefs"]["math"]  # noqa
 coinflip = strings["briefs"]["coinflip"]  # noqa
 future = strings["briefs"]["future"]  # noqa
 diary = strings["briefs"]["diary"]  # noqa
+clear = strings["briefs"]["clear"]  # noqa

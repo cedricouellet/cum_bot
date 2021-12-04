@@ -22,10 +22,14 @@ strings = {
         "invalid": "That's not a valid city, you dumb fuck.\n\nTry something else.",
         "blank": "Don't waste my time asshole, you've gotta give me a city.\n\nTry `!weather Toronto`, retard"
     },
+    "errors_clear": {
+        "blank": "Don't waste my time asshole.\n\nDo this: `!clear ;;` to delete all messages that match that pattern."
+    },
     "errors_diary": {
       "empty": "No entries currently exist. \n\nAdd one by doing `!diary This is my first entry.`"
     },
     "error_unknown": "Can't do that... Something went wrong",
+    "error_missing_permission": "Damn bro chill.\n\nYou need a permission elevation to do that.",
     "replies": {
         "joke": "Here's your shitty joke, asshole:\n\n",
         "oleg": "That's right. I fucked oleg's mom",
@@ -70,7 +74,8 @@ strings = {
         "weather": "Gets the weather for a specific city.",
         "coinflip": "Flips a coin.",
         "future": "Predicts your future.",
-        "diary": "Add an entry to the diary of get a random one."
+        "diary": "Add an entry to the diary of get a random one.",
+        "clear": "Clears all messages in the channel that start with a specified pattern."
     },
     "descriptions": {
         "joke": "Tells a joke based on a category. By default, category is Any.\n\n" +
