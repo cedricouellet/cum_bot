@@ -187,7 +187,7 @@ def on_command_clear(bot: Bot) -> None:
     async def clear_command(ctx: Context, pattern: str, limit: int = 100) -> None:
         messages = await ctx.channel.history(limit=limit).flatten()
 
-        msg_starting = f"About to delete up to {limit} messages that start with: {pattern}"
+        msg_starting = f"About to delete all messages that start with: {pattern} \nWithin {limit} messages."
         await __send_message(ctx, msg_starting)
 
         deleted = 0
