@@ -1,8 +1,7 @@
 """
 Listeners for commands
 """
-
-from discord.ext.commands import Context, Bot, CommandError
+from discord.ext.commands import Context, Bot, CommandError, has_permissions
 import discord.ext.commands.errors as command_errors
 
 from utils.logging import write_log
@@ -174,6 +173,35 @@ def on_command_weather(bot: Bot) -> None:
         if isinstance(error, command_errors.MissingRequiredArgument):
             message = err.weather_blank
         await __on_error(ctx, message, 'weather')
+
+
+def on_command_clear(bot: Bot) -> None:
+    """
+    The command listener for the clear command.
+
+    :param bot: The bot on which to apply the listener.
+    """
+
+    @has_permissions(administrator=True)
+    @bot.command(name="clear", brief=briefs.clear, description=desc.clear)
+    async def clear_command(ctx: Context, *, pattern: str) -> None:
+        messages = await ctx.channel.history().flatten()
+
+        for message in messages:
+            if message.content.startswith(pattern):
+                await message.delete()
+
+    @clear_command.error
+    async def clear_error(ctx: Context, error: CommandError) -> None:
+        message = err.unknown
+
+        if isinstance(error, command_errors.MissingRequiredArgument):
+            message = err.clear_blank
+
+        if isinstance(error, command_errors.MissingPermissions):
+            message = err.missing_permissions
+
+        await __on_error(ctx, message, 'clear')
 
 
 def on_command_gif(bot: Bot) -> None:
