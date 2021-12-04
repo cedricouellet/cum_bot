@@ -187,7 +187,7 @@ def on_command_clear(bot: Bot) -> None:
     async def clear_command(ctx: Context, *, pattern: str) -> None:
         messages = await ctx.channel.history().flatten()
 
-        msg_starting = f"About to delete {len(messages)} messages."
+        msg_starting = f"About to delete all messages that start with: {pattern}"
         await __send_message(ctx, msg_starting)
 
         deleted = 0
