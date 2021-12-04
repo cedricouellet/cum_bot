@@ -169,7 +169,11 @@ def on_command_weather(bot: Bot) -> None:
 
     @weather_command.error
     async def weather_error(ctx: Context, error: CommandError) -> None:
-        await __on_error(ctx, error, 'math', err.weather_blank)
+        message = err.unknown
+
+        if isinstance(error, command_errors.MissingRequiredArgument):
+            message = err.weather_blank
+        await __on_error(ctx, message, 'weather')
 
 
 def on_command_gif(bot: Bot) -> None:
@@ -199,7 +203,10 @@ def on_command_math(bot: Bot) -> None:
 
     @math_command.error
     async def math_error(ctx: Context, error: CommandError) -> None:
-        await __on_error(ctx, error, 'math', err.math_blank)
+        message = err.unknown
+        if isinstance(error, command_errors.MissingRequiredArgument):
+            message = err.math_blank
+        await __on_error(ctx, message, 'math')
 
 
 def on_command_coinflip(bot: Bot) -> None:
@@ -262,19 +269,14 @@ async def __send_message(ctx: Context, message: str, limit: int = 2000, delete_a
             i = 0
 
 
-async def __on_error(ctx: Context, error: CommandError, command_name: str, blank_errmsg: str) -> None:
+async def __on_error(ctx: Context, message: str, command_name: str) -> None:
     """
     When an error occurs.
 
     :param ctx: The context of the command error.
-    :param error: The error being thrown.
+    :param message: The error message sent to the user
     :param command_name: The name of the command.
-    :param blank_errmsg: The error message for a missing argument
     """
-    message = err.unknown
-    if isinstance(error, command_errors.MissingRequiredArgument):
-        __log_error(ctx, command_name, 'missing argument', None)
-        message = blank_errmsg
-
+    __log_error(ctx, command_name, message, None)
     await __send_message(ctx, message, delete_after=5)
     await ctx.message.delete(delay=5)
